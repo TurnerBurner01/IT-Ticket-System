@@ -33,10 +33,21 @@ public class AddTicket_Controller {
         String ticketDescription = descriptionField.getText();
         String ticketDate = dateField.getText();
 
-        // Check if all fields have been filled
-        // TODO: have something happen if not all fields are selected
+        // Checks to see if there are any empty fields
         if (ticketName.isEmpty() || ticketType == null || ticketDescription.isEmpty() || ticketDate.isEmpty()) {
-            System.out.println("Please fill in all fields!");
+            // Highlight missing fields
+            if (ticketName.isEmpty()) {
+                nameField.setPromptText("ENTER A NAME");
+            }
+            if (ticketType == null) {
+                typeComboBox.setPromptText("ENTER A TYPE");
+            }
+            if (ticketDescription.isEmpty()) {
+                descriptionField.setPromptText("ENTER A DESCRIPTION");
+            }
+            if (ticketDate.isEmpty()) {
+                dateField.setPromptText("ENTER A DATE");
+            }
             return;
         }
 
