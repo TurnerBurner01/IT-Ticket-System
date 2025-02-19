@@ -2,7 +2,6 @@ package com.example.itticketsystem;
 
 import com.example.itticketsystem.model.Ticket;
 import com.example.itticketsystem.data_structure.BinarySearchTree;
-import com.example.itticketsystem.model.TicketList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,12 +25,10 @@ public class Dashboard_Controller {
     @FXML private TableColumn<Ticket, String> dateColumn;
 
     private BinarySearchTree ticketService;
-    private TicketList ticketList;
 
     @FXML public void initialize() {
-        // Initialize the BST instead of TicketService
+        // Initialize the BinarySearchTree service for tickets
         ticketService = new BinarySearchTree();
-        ticketList = new TicketList();
 
         // Set up table columns
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
@@ -45,19 +42,23 @@ public class Dashboard_Controller {
     }
 
     private void loadTestData() {
+        // Adding test data to BinarySearchTree
         ticketService.insert(new Ticket(0, true, "Critical Issue", "Floor Shut Down", "James W", "6/03/2025"));
         ticketService.insert(new Ticket(0, true, "System Failure", "Urgent fix needed", "Alice W", "18/02/2025"));
         ticketService.insert(new Ticket(0, true, "New Equipment", "Need a new monitor", "Bob J", "19/02/2025"));
         ticketService.insert(new Ticket(0, true, "Critical Issue", "Server down", "Charlie Z", "17/02/2025"));
         ticketService.insert(new Ticket(0, false, "Software Bug", "Photoshop not working", "David L", "20/02/2025"));
 
+        // Updating priorities
         ticketService.updatePriorities();
 
+        // Adding all tickets to TableView
         ticketTable.getItems().addAll(ticketService.getAllTickets());
     }
 
     @FXML private void openAddTicketWindow() {
         try {
+            // Load the "Add Ticket" window
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-ticket.fxml"));
             Parent root = fxmlLoader.load();
 
@@ -67,22 +68,22 @@ public class Dashboard_Controller {
             // Pass the reference of this (Dashboard_Controller) to the AddTicket_Controller
             addTicketController.setDashboardController(this);
 
+            // Show the AddTicket window
             Stage stage = new Stage();
             stage.setTitle("Add New Ticket");
             stage.setScene(new Scene(root));
-            stage.toFront();            // Automatically pops up
-            stage.setResizable(false);  // Stops resizing
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-
-
+    // Method to add ticket to the table from AddTicket_Controller
     public void addTicketToTable(Ticket newTicket) {
-        ticketService.insert(newTicket); // Add ticket to BinarySearchTree
-        ticketTable.getItems().add(newTicket); // Add ticket to TableView
+        ticketService.insert(newTicket);                                // Add ticket to BinarySearchTree
+        ticketService.updatePriorities();                               // Update priorities after insertion
+        ticketTable.getItems().clear();                                 // Clear the TableView before reloading
+        ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
     }
 }

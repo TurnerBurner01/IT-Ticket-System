@@ -33,6 +33,8 @@ public class AddTicket_Controller {
         String ticketDescription = descriptionField.getText();
         String ticketDate = dateField.getText();
 
+        // Check if all fields have been filled
+        // TODO: have something happen if not all fields are selected
         if (ticketName.isEmpty() || ticketType == null || ticketDescription.isEmpty() || ticketDate.isEmpty()) {
             System.out.println("Please fill in all fields!");
             return;
