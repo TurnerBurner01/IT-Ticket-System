@@ -5,6 +5,19 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.itticketsystem.HelloController">
-</VBox>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itticketsystem.Dashboard_Controller">
+
+    <left>
+        <VBox spacing="10">
+            <Button text="Add Ticket" fx:id="addTicketButton"/>
+            <Button text="Delete Ticket" fx:id="deleteTicketButton"/>
+            <Button text="Search Ticket" fx:id="searchTicketButton"/>
+            <Button text="Update Priority" fx:id="updatePriorityButton"/>
+        </VBox>
+    </left>
+
+    <center>
+        <Label text="Hello"/>
+    </center>
+</BorderPane>
