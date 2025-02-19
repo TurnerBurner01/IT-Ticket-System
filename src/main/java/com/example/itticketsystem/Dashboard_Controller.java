@@ -39,24 +39,14 @@ public class Dashboard_Controller {
     }
 
     private void loadTestData() {
-        // Add tickets to the BST using the insert method
-        ticketService.insert(new Ticket(0, false, "Set up computer", "I need my laptop set up", "Joshua T", "19/02/2025"));
-        ticketService.insert(new Ticket(0, false, "New Equipment", "I need a new USB stick", "James Sim", "20/02/2025"));
-        ticketService.insert(new Ticket(0, false, "Server Crash", "The Server has crashed", "Dan Potter", "5/01/2025"));
+        ticketService.insert(new Ticket(0, true, "Critical Issue", "Floor Shut Down", "James W", "6/03/2025"));
+        ticketService.insert(new Ticket(0, true, "System Failure", "Urgent fix needed", "Alice W", "18/02/2025"));
+        ticketService.insert(new Ticket(0, true, "New Equipment", "Need a new monitor", "Bob J", "19/02/2025"));
+        ticketService.insert(new Ticket(0, true, "Critical Issue", "Server down", "Charlie Z", "17/02/2025"));
+        ticketService.insert(new Ticket(0, false, "Software Request", "Need Photoshop installed", "David L", "20/02/2025"));
 
-        // Update priorities based on the BST position
         ticketService.updatePriorities();
 
-        // Add the sorted tickets to the custom list
-        Ticket[] sortedTickets = ticketService.getAllTickets();
-        for (Ticket ticket : sortedTickets) {
-            ticketList.add(ticket);
-        }
-
-        // Bind the custom list to the TableView (Note: You'll need to manually populate the TableView)
-        ticketTable.getItems().clear();
-        for (Ticket ticket : ticketList.getTickets()) {
-            ticketTable.getItems().add(ticket);
-        }
+        ticketTable.getItems().addAll(ticketService.getAllTickets());
     }
 }
