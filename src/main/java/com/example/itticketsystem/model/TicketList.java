@@ -1,5 +1,11 @@
 package com.example.itticketsystem.model;
 
+/**
+ * This class provides a custom implementation for storing and managing a list of tickets,
+ * replacing the need for Java's ObservableList while allowing insertion, retrieval,
+ * and sorting of tickets.
+ */
+
 public class TicketList {
     private Ticket[] tickets;
     private int size;

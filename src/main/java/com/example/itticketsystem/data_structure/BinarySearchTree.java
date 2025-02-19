@@ -1,4 +1,19 @@
 package com.example.itticketsystem.data_structure;
+/*
+  This class implements a custom Binary Search Tree (BST) to store and manage IT tickets.
+  It organises tickets based on priority, type, and date.
+
+  The BST maintains order by:
+  - First comparing ticket priority.
+  - If priorities are the same, comparing ticket type.
+  - If types are also the same, sorting by date.
+
+  The class provides methods to:
+  - Insert tickets while maintaining order.
+  - Retrieve tickets in priority order using in-order traversal.
+  - Update ticket priorities dynamically based on their position in the tree.
+ */
+
 
 import com.example.itticketsystem.model.Ticket;
 
