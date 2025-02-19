@@ -2,14 +2,16 @@ package com.example.itticketsystem.model;
 
 public class Ticket {
     private int priority;
+    private Boolean status;
     private String type;
     private String description;
     private String name;
     private String date;
 
     // Constructor to create a ticket
-    public Ticket(int priority, String type, String description, String name, String date) {
+    public Ticket(int priority,Boolean status, String type, String description, String name, String date) {
         this.priority = priority;
+        this.status = status;
         this.type = type;
         this.description = description;
         this.name = name;
@@ -27,6 +29,14 @@ public class Ticket {
         this.priority = priority;
     }
 
+    // -------> Status
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
     // -------> Type
     public String getType() {
         return type;
