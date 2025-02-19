@@ -1,5 +1,8 @@
 package com.example.itticketsystem.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Ticket {
     private int priority;
     private Boolean status;
@@ -16,6 +19,18 @@ public class Ticket {
         this.description = description;
         this.name = name;
         this.date = date;
+    }
+
+    // Create priority for types of issues
+    public int getTypePriority() {
+        Map<String, Integer> typePriorityMap = new HashMap<>();
+        typePriorityMap.put("Critical Issue", 1);
+        typePriorityMap.put("System Failure", 2);
+        typePriorityMap.put("New Equipment", 3);
+        typePriorityMap.put("Software Request", 4);
+        typePriorityMap.put("General Query", 5);
+
+        return typePriorityMap.getOrDefault(type, 10); // Default to lowest priority if type is unknown
     }
 
     // Gets and Sets Methods
