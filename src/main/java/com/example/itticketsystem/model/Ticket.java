@@ -21,13 +21,15 @@ public class Ticket {
         this.date = date;
     }
 
+
+
     // Create priority for types of issues
     public int getTypePriority() {
         Map<String, Integer> typePriorityMap = new HashMap<>();
         typePriorityMap.put("Critical Issue", 1);
         typePriorityMap.put("System Failure", 2);
-        typePriorityMap.put("New Equipment", 3);
-        typePriorityMap.put("Software Request", 4);
+        typePriorityMap.put("Software Bug", 3);
+        typePriorityMap.put("New Equipment", 4);
         typePriorityMap.put("General Query", 5);
 
         return typePriorityMap.getOrDefault(type, 10); // Default to lowest priority if type is unknown
@@ -36,6 +38,7 @@ public class Ticket {
     // Gets and Sets Methods
 
     // -------> Priority
+
     public int getPriority() {
         return priority;
     }

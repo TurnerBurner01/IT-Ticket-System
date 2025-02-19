@@ -4,9 +4,15 @@ import com.example.itticketsystem.model.Ticket;
 import com.example.itticketsystem.data_structure.BinarySearchTree;
 import com.example.itticketsystem.model.TicketList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Dashboard_Controller {
 
@@ -48,5 +54,21 @@ public class Dashboard_Controller {
         ticketService.updatePriorities();
 
         ticketTable.getItems().addAll(ticketService.getAllTickets());
+    }
+
+    @FXML private void openAddTicketWindow() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-ticket.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Add New Ticket");
+            stage.setScene(new Scene(root));
+            stage.toFront();            // Automatically pops up
+            stage.setResizable(false);  // Stops resizing
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
