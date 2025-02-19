@@ -10,5 +10,6 @@ module com.example.itticketsystem {
     requires eu.hansolo.tilesfx;
 
     opens com.example.itticketsystem to javafx.fxml;
+    opens com.example.itticketsystem.model to javafx.base;
     exports com.example.itticketsystem;
 }
