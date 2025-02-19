@@ -12,7 +12,7 @@
 
     <left>
         <VBox spacing="10" styleClass="vboxButtons">
-            <Button text="Add Ticket" fx:id="addTicketButton" styleClass="menuButtons"/>
+            <Button text="Add Ticket" onAction="#openAddTicketWindow" fx:id="addTicketButton" styleClass="menuButtons"/>
             <Button text="Delete Ticket" fx:id="deleteTicketButton" styleClass="menuButtons"/>
             <Button text="Search Ticket" fx:id="searchTicketButton" styleClass="menuButtons"/>
             <Button text="Update Priority" fx:id="updatePriorityButton" styleClass="menuButtons"/>

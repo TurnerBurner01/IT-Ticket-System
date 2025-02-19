@@ -12,7 +12,7 @@ public class Ticket {
     private String date;
 
     // Constructor to create a ticket
-    public Ticket(int priority,Boolean status, String type, String description, String name, String date) {
+    public Ticket(int priority, Boolean status, String type, String description, String name, String date) {
         this.priority = priority;
         this.status = status;
         this.type = type;
@@ -26,16 +26,15 @@ public class Ticket {
         Map<String, Integer> typePriorityMap = new HashMap<>();
         typePriorityMap.put("Critical Issue", 1);
         typePriorityMap.put("System Failure", 2);
-        typePriorityMap.put("New Equipment", 3);
-        typePriorityMap.put("Software Request", 4);
+        typePriorityMap.put("Software Bug", 3);
+        typePriorityMap.put("New Equipment", 4);
         typePriorityMap.put("General Query", 5);
 
         return typePriorityMap.getOrDefault(type, 10); // Default to lowest priority if type is unknown
     }
 
-    // Gets and Sets Methods
+    // Getter and Setter methods
 
-    // -------> Priority
     public int getPriority() {
         return priority;
     }
@@ -44,7 +43,6 @@ public class Ticket {
         this.priority = priority;
     }
 
-    // -------> Status
     public Boolean getStatus() {
         return status;
     }
@@ -52,7 +50,7 @@ public class Ticket {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-    // -------> Type
+
     public String getType() {
         return type;
     }
@@ -61,7 +59,6 @@ public class Ticket {
         this.type = type;
     }
 
-    // -------> Description
     public String getDescription() {
         return description;
     }
@@ -70,7 +67,6 @@ public class Ticket {
         this.description = description;
     }
 
-    // -------> Name
     public String getName() {
         return name;
     }
@@ -79,7 +75,6 @@ public class Ticket {
         this.name = name;
     }
 
-    // -------> Date
     public String getDate() {
         return date;
     }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.itticketsystem.AddTicket_Controller" stylesheets="@style.css">
+    <children>
+        <Label layoutX="20" layoutY="20" text="Add New Ticket" styleClass="titleLabel"/>
+
+        <Label layoutX="20" layoutY="60" text="Name:" styleClass="formLabel"/>
+        <TextField fx:id="nameField" layoutX="100" layoutY="60" styleClass="formTextField"/>
+
+        <Label layoutX="20" layoutY="100" text="Type:" styleClass="formLabel"/>
+        <ComboBox fx:id="typeComboBox" layoutX="100" layoutY="100" styleClass="formComboBox"/>
+
+        <Label layoutX="20" layoutY="140" text="Description:" styleClass="formLabel"/>
+        <TextField fx:id="descriptionField" layoutX="100" layoutY="140" styleClass="formTextField"/>
+
+        <Label layoutX="20" layoutY="180" text="Date:" styleClass="formLabel"/>
+        <TextField fx:id="dateField" layoutX="100" layoutY="180" styleClass="formTextField"/>
+
+        <HBox spacing="20" layoutX="100" layoutY="220">
+            <Button text="Submit" onAction="#handleSubmit" styleClass="addTicketButtons"/>
+            <Button text="Cancel" onAction="#handleCancel" styleClass="addTicketButtons"/>
+        </HBox>
+    </children>
+</AnchorPane>
+

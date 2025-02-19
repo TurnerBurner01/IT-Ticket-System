@@ -1,3 +1,11 @@
+/* Global Styles */
+.root {
+    -fx-font-family: "Arial";       /* Setting font for all elements */
+    -fx-background-color: #ecf0f1;  /* Light background color */
+    -fx-padding: 20px;
+}
+
+/*---------------------------*/
 /*Menu Button Style*/
 .menuButtons {
     -fx-background-color: #3498db;  /* Set background color */
@@ -16,4 +24,63 @@
     -fx-padding: 100px 20px 50px 20px; /*top, right, bottom, lef*/ /* Set position on scene*/
 }
 
+/*---------------------------*/
+/*Adding Ticket Style*/
+
+/* Title Label Style */
+.titleLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px 0;
+}
+
+/* Form Labels */
+.formLabel {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #34495e;
+    -fx-padding: 5px 0;
+}
+
+/* Form Text Field Style */
+.formTextField {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 250px;
+}
+
+/* ComboBox Style */
+.formComboBox {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 250px;
+}
+
+/* Button Styles */
+.addTicketButtons {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-min-width: 80px;
+    -fx-min-height: 40px;
+}
+
+/* Button Hover Effect */
+.addTicketButtons:hover {
+    -fx-background-color: #214667;  /* Darker color on hover */
+}
+
+/* Add spacing between elements */
+.children {
+    -fx-spacing: 30px;
+}
 /*---------------------------*/
