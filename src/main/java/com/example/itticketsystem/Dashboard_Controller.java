@@ -49,7 +49,7 @@ public class Dashboard_Controller {
         ticketService.insert(new Ticket(0, true, "System Failure", "Urgent fix needed", "Alice W", "18/02/2025"));
         ticketService.insert(new Ticket(0, true, "New Equipment", "Need a new monitor", "Bob J", "19/02/2025"));
         ticketService.insert(new Ticket(0, true, "Critical Issue", "Server down", "Charlie Z", "17/02/2025"));
-        ticketService.insert(new Ticket(0, false, "Software Request", "Need Photoshop installed", "David L", "20/02/2025"));
+        ticketService.insert(new Ticket(0, false, "Software Bug", "Photoshop not working", "David L", "20/02/2025"));
 
         ticketService.updatePriorities();
 

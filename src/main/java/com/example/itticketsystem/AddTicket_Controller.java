@@ -44,6 +44,7 @@ public class AddTicket_Controller {
         System.out.println("Type: " + newTicket.getType());
         System.out.println("Description: " + newTicket.getDescription());
         System.out.println("Priority: " + newTicket.getPriority());
+        System.out.println("Date: " + newTicket.getDate());
 
         // Close the window after submitting the ticket
         Stage stage = (Stage) nameField.getScene().getWindow();

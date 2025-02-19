@@ -4,23 +4,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.itticketsystem.AddTicket_Controller">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.itticketsystem.AddTicket_Controller" stylesheets="@style.css">
     <children>
-        <Label layoutX="20" layoutY="20" text="Add New Ticket"/>
+        <Label layoutX="20" layoutY="20" text="Add New Ticket" styleClass="titleLabel"/>
 
-        <Label layoutX="20" layoutY="140" text="Name:"/>
-        <TextField fx:id="nameField" layoutX="100" layoutY="140"/>
+        <Label layoutX="20" layoutY="60" text="Name:" styleClass="formLabel"/>
+        <TextField fx:id="nameField" layoutX="100" layoutY="60" styleClass="formTextField"/>
 
-        <Label layoutX="20" layoutY="60" text="Type:"/>
-        <ComboBox fx:id="typeComboBox" layoutX="100" layoutY="60"/>
+        <Label layoutX="20" layoutY="100" text="Type:" styleClass="formLabel"/>
+        <ComboBox fx:id="typeComboBox" layoutX="100" layoutY="100" styleClass="formComboBox"/>
 
-        <Label layoutX="20" layoutY="100" text="Description:"/>
-        <TextField fx:id="descriptionField" layoutX="100" layoutY="100"/>
+        <Label layoutX="20" layoutY="140" text="Description:" styleClass="formLabel"/>
+        <TextField fx:id="descriptionField" layoutX="100" layoutY="140" styleClass="formTextField"/>
 
-        <Label layoutX="20" layoutY="180" text="Date:"/>
-        <TextField fx:id="dateField" layoutX="100" layoutY="180"/>
+        <Label layoutX="20" layoutY="180" text="Date:" styleClass="formLabel"/>
+        <TextField fx:id="dateField" layoutX="100" layoutY="180" styleClass="formTextField"/>
 
-        <Button text="Submit" layoutX="100" layoutY="220" onAction="#handleSubmit"/>
-        <Button text="Cancel" layoutX="180" layoutY="220" onAction="#handleCancel"/>
+        <HBox spacing="20" layoutX="100" layoutY="220">
+            <Button text="Submit" onAction="#handleSubmit" styleClass="addTicketButtons"/>
+            <Button text="Cancel" onAction="#handleCancel" styleClass="addTicketButtons"/>
+        </HBox>
     </children>
 </AnchorPane>
+
