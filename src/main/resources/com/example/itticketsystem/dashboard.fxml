@@ -3,10 +3,11 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itticketsystem.Dashboard_Controller" stylesheets="@style.css">
 
     <left>
@@ -19,6 +20,13 @@
     </left>
 
     <center>
-        <Label text="Hello"/>
+        <TableView fx:id="ticketTable" >
+            <columns>
+                <TableColumn text="Priority" prefWidth="60" fx:id="priorityColumn"/>
+                <TableColumn text="Type" prefWidth="150" fx:id="typeColumn"/>
+                <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
+                <TableColumn text="Name" prefWidth="100" fx:id="nameColumn"/>
+            </columns>
+        </TableView>
     </center>
 </BorderPane>
