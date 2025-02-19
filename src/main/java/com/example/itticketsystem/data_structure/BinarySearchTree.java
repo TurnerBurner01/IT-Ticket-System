@@ -35,32 +35,27 @@ public class BinarySearchTree {
 
     // Recursive insert method with sorting criteria (Priority = Type & Date)
     private Node insertRec(Node root, Ticket ticket) {
-        // If the tree is empty, return a new node
+        // if node is empty return a new node
         if (root == null) {
-            root = new Node(ticket);
-            return root;
+            return new Node(ticket);
         }
 
-        // First, compare priorities
-        if (ticket.getPriority() < root.ticket.getPriority()) {
+        int ticketPriority = ticket.getTypePriority();
+        int rootPriority = root.ticket.getTypePriority();
+
+        // Checks priority of the ticket
+        if (ticketPriority < rootPriority) {
             root.left = insertRec(root.left, ticket);
-        } else if (ticket.getPriority() > root.ticket.getPriority()) {
+        } else if (ticketPriority > rootPriority) {
             root.right = insertRec(root.right, ticket);
-        }
-        // If priorities are the same, compare the date
-        else {
-            // Parse dates as LocalDate for comparison if necessary (could also use String compare if format is consistent)
-            String ticketDate = ticket.getDate();
-            String rootDate = root.ticket.getDate();
-
-            // Compare the dates lexicographically
-            if (ticketDate.compareTo(rootDate) < 0) {
+        } else {
+            // If type priority is the same, compare dates
+            if (ticket.getDate().compareTo(root.ticket.getDate()) < 0) {
                 root.left = insertRec(root.left, ticket);
             } else {
                 root.right = insertRec(root.right, ticket);
             }
         }
-        // Return the unchanged node pointer
         return root;
     }
 
