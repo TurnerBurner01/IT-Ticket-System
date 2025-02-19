@@ -61,6 +61,12 @@ public class Dashboard_Controller {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-ticket.fxml"));
             Parent root = fxmlLoader.load();
 
+            // Get the controller of the AddTicket window
+            AddTicket_Controller addTicketController = fxmlLoader.getController();
+
+            // Pass the reference of this (Dashboard_Controller) to the AddTicket_Controller
+            addTicketController.setDashboardController(this);
+
             Stage stage = new Stage();
             stage.setTitle("Add New Ticket");
             stage.setScene(new Scene(root));
@@ -70,5 +76,13 @@ public class Dashboard_Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+
+
+    public void addTicketToTable(Ticket newTicket) {
+        ticketService.insert(newTicket); // Add ticket to BinarySearchTree
+        ticketTable.getItems().add(newTicket); // Add ticket to TableView
     }
 }
