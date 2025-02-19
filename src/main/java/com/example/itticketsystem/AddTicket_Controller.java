@@ -17,7 +17,7 @@ public class AddTicket_Controller {
 
     // Initialize the ComboBox with predefined ticket types
     @FXML public void initialize() {
-        typeComboBox.getItems().addAll("Critical Issue", "System Failure", "New Equipment", "Software Bug", "General Query");
+        typeComboBox.getItems().addAll("Critical Issue", "System Failure", "Software Bug", "New Equipment", "General Query");
     }
 
     // Set the Dashboard_Controller reference
