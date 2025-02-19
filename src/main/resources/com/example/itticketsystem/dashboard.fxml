@@ -26,7 +26,9 @@
                 <TableColumn text="Type" prefWidth="150" fx:id="typeColumn"/>
                 <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
                 <TableColumn text="Name" prefWidth="100" fx:id="nameColumn"/>
+                <TableColumn text="Date" prefWidth="100" fx:id="dateColumn"/>
             </columns>
         </TableView>
     </center>
+
 </BorderPane>
