@@ -6,9 +6,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.itticketsystem.DeleteTicket_Controller" stylesheets="@style.css">
+    <children>
+        <Label layoutX="20" layoutY="20" text="Delete Ticket" styleClass="titleLabel"/>
 
+
+        <HBox spacing="20" layoutX="100" layoutY="220">
+            <Button text="Submit" styleClass="submit_cancelButtons"/>
+            <Button text="Cancel" styleClass="submit_cancelButtons"/>
+        </HBox>
+    </children>
 </AnchorPane>
