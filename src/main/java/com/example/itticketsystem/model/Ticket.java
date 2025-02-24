@@ -12,7 +12,7 @@ public class Ticket {
     private String date;
 
     // Constructor to create a ticket
-    public Ticket(int priority,Boolean status, String type, String description, String name, String date) {
+    public Ticket(int priority, Boolean status, String type, String description, String name, String date) {
         this.priority = priority;
         this.status = status;
         this.type = type;
@@ -20,8 +20,6 @@ public class Ticket {
         this.name = name;
         this.date = date;
     }
-
-
 
     // Create priority for types of issues
     public int getTypePriority() {
@@ -35,9 +33,7 @@ public class Ticket {
         return typePriorityMap.getOrDefault(type, 10); // Default to lowest priority if type is unknown
     }
 
-    // Gets and Sets Methods
-
-    // -------> Priority
+    // Getter and Setter methods
 
     public int getPriority() {
         return priority;
@@ -47,7 +43,6 @@ public class Ticket {
         this.priority = priority;
     }
 
-    // -------> Status
     public Boolean getStatus() {
         return status;
     }
@@ -55,7 +50,7 @@ public class Ticket {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-    // -------> Type
+
     public String getType() {
         return type;
     }
@@ -64,7 +59,6 @@ public class Ticket {
         this.type = type;
     }
 
-    // -------> Description
     public String getDescription() {
         return description;
     }
@@ -73,7 +67,6 @@ public class Ticket {
         this.description = description;
     }
 
-    // -------> Name
     public String getName() {
         return name;
     }
@@ -82,7 +75,6 @@ public class Ticket {
         this.name = name;
     }
 
-    // -------> Date
     public String getDate() {
         return date;
     }

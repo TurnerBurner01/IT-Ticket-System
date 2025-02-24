@@ -3,7 +3,6 @@ package com.example.itticketsystem;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import com.example.itticketsystem.model.Ticket;
 
@@ -14,9 +13,16 @@ public class AddTicket_Controller {
     @FXML private ComboBox<String> typeComboBox;    // ComboBox for ticket type
     @FXML private TextField dateField;
 
+    private Dashboard_Controller dashboardController;  // Reference to parent controller
+
     // Initialize the ComboBox with predefined ticket types
     @FXML public void initialize() {
-        typeComboBox.getItems().addAll("Critical Issue", "System Failure", "New Equipment", "Software Bug", "General Query");
+        typeComboBox.getItems().addAll("Critical Issue", "System Failure", "Software Bug", "New Equipment", "General Query");
+    }
+
+    // Set the Dashboard_Controller reference
+    public void setDashboardController(Dashboard_Controller dashboardController) {
+        this.dashboardController = dashboardController;
     }
 
     // Handle the "Submit" action
@@ -27,27 +33,22 @@ public class AddTicket_Controller {
         String ticketDescription = descriptionField.getText();
         String ticketDate = dateField.getText();
 
-        boolean hasError = false;
-
-        if (ticketName.isBlank()) {
-            nameField.setPromptText("Please enter a name");
-            hasError = true;
-        }
-        if (ticketType == null) {
-            typeComboBox.setPromptText("Please select a type");
-            hasError = true;
-        }
-        if (ticketDescription.isBlank()) {
-            descriptionField.setPromptText("Please enter a description");
-            hasError = true;
-        }
-        if (ticketDate.isBlank()) {
-            dateField.setPromptText("Please enter a date");
-            hasError = true;
-        }
-
-        if (hasError) {
-            return; // Stop submission if any field is empty
+        // Checks to see if there are any empty fields
+        if (ticketName.isEmpty() || ticketType == null || ticketDescription.isEmpty() || ticketDate.isEmpty()) {
+            // Highlight missing fields
+            if (ticketName.isEmpty()) {
+                nameField.setPromptText("ENTER A NAME");
+            }
+            if (ticketType == null) {
+                typeComboBox.setPromptText("ENTER A TYPE");
+            }
+            if (ticketDescription.isEmpty()) {
+                descriptionField.setPromptText("ENTER A DESCRIPTION");
+            }
+            if (ticketDate.isEmpty()) {
+                dateField.setPromptText("ENTER A DATE");
+            }
+            return;
         }
 
         // Get priority based on the selected type
@@ -55,6 +56,11 @@ public class AddTicket_Controller {
 
         // Create a new Ticket with the selected type and set the priority
         Ticket newTicket = new Ticket(ticketPriority, true, ticketType, ticketDescription, ticketName, ticketDate);
+
+        // Pass the new ticket to the Dashboard_Controller
+        if (dashboardController != null) {
+            dashboardController.addTicketToTable(newTicket);  // Add ticket to parent controller's table
+        }
 
         // Print ticket details for testing
         System.out.println("Ticket Submitted");
@@ -68,7 +74,6 @@ public class AddTicket_Controller {
         Stage stage = (Stage) nameField.getScene().getWindow();
         stage.close();
     }
-
 
     // Handle the "Cancel" action (closes the window)
     @FXML private void handleCancel() {
