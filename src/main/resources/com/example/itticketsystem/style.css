@@ -5,7 +5,7 @@
     -fx-padding: 20px;
 }
 
-/*---------------------------*/
+/*--------------------------------------------------------------------------------------------*/
 /*Menu Button Style*/
 .menuButtons {
     -fx-background-color: #3498db;  /* Set background color */
@@ -24,7 +24,7 @@
     -fx-padding: 100px 20px 50px 20px; /*top, right, bottom, lef*/ /* Set position on scene*/
 }
 
-/*---------------------------*/
+/*--------------------------------------------------------------------------------------------*/
 /*Adding Ticket Style*/
 
 /* Title Label Style */
@@ -76,11 +76,11 @@
 
 /* Button Hover Effect */
 .addTicketButtons:hover {
-    -fx-background-color: #214667;  /* Darker color on hover */
+    -fx-background-color: #214667;
 }
 
 /* Add spacing between elements */
 .children {
     -fx-spacing: 30px;
 }
-/*---------------------------*/
+/*--------------------------------------------------------------------------------------------*/

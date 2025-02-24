@@ -29,7 +29,7 @@ public class Dashboard_Controller {
     private TicketList ticketList;
 
     @FXML public void initialize() {
-        // Initialize the BST instead of TicketService
+        // Initialize the BST and TicketList Classes
         ticketService = new BinarySearchTree();
         ticketList = new TicketList();
 
