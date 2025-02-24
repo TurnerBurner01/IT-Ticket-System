@@ -21,8 +21,8 @@
         <TextField fx:id="dateField" layoutX="100" layoutY="180" styleClass="formTextField"/>
 
         <HBox spacing="20" layoutX="100" layoutY="220">
-            <Button text="Submit" onAction="#handleSubmit" styleClass="addTicketButtons"/>
-            <Button text="Cancel" onAction="#handleCancel" styleClass="addTicketButtons"/>
+            <Button text="Submit" onAction="#handleSubmit" styleClass="submit_cancelButtons"/>
+            <Button text="Cancel" onAction="#handleCancel" styleClass="submit_cancelButtons"/>
         </HBox>
     </children>
 </AnchorPane>
