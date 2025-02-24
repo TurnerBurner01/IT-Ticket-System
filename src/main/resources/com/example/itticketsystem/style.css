@@ -24,8 +24,9 @@
     -fx-padding: 100px 20px 50px 20px; /*top, right, bottom, lef*/ /* Set position on scene*/
 }
 
+
 /*--------------------------------------------------------------------------------------------*/
-/*Adding Ticket Style*/
+/*Form Style*/
 
 /* Title Label Style */
 .titleLabel {
@@ -63,8 +64,8 @@
     -fx-pref-width: 250px;
 }
 
-/* Button Styles */
-.addTicketButtons {
+/* "Submit" & "Cancel" Button Styles */
+.submit_cancelButtons {
     -fx-background-color: #3498db;
     -fx-text-fill: white;
     -fx-font-size: 15px;
@@ -74,8 +75,7 @@
     -fx-min-height: 40px;
 }
 
-/* Button Hover Effect */
-.addTicketButtons:hover {
+.submit_cancelButtons:hover {
     -fx-background-color: #214667;
 }
 
