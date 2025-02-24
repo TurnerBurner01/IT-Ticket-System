@@ -23,11 +23,12 @@
         <TableView fx:id="ticketTable" >
             <columns>
                 <TableColumn text="Priority" prefWidth="60" fx:id="priorityColumn"/>
+                <TableColumn text="ID" prefWidth="30" fx:id="idColumn"/>
                 <TableColumn text="Status" prefWidth="60" fx:id="statusColumn"/>
                 <TableColumn text="Type" prefWidth="150" fx:id="typeColumn"/>
                 <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
                 <TableColumn text="Name" prefWidth="100" fx:id="nameColumn"/>
-                <TableColumn text="Date" prefWidth="100" fx:id="dateColumn"/>
+                <TableColumn text="Date" prefWidth="80" fx:id="dateColumn"/>
             </columns>
         </TableView>
     </center>
