@@ -3,6 +3,7 @@ package com.example.itticketsystem;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import com.example.itticketsystem.model.Ticket;
 
@@ -20,16 +21,33 @@ public class AddTicket_Controller {
 
     // Handle the "Submit" action
     @FXML private void handleSubmit() {
-
         // Get the values from the TextField and ComboBox
         String ticketName = nameField.getText();
         String ticketType = typeComboBox.getValue();
         String ticketDescription = descriptionField.getText();
         String ticketDate = dateField.getText();
 
-        if (ticketName.isEmpty() || ticketType == null || ticketDescription.isEmpty() || ticketDate.isEmpty()) {
-            System.out.println("Please fill in all fields!");
-            return;
+        boolean hasError = false;
+
+        if (ticketName.isBlank()) {
+            nameField.setPromptText("Please enter a name");
+            hasError = true;
+        }
+        if (ticketType == null) {
+            typeComboBox.setPromptText("Please select a type");
+            hasError = true;
+        }
+        if (ticketDescription.isBlank()) {
+            descriptionField.setPromptText("Please enter a description");
+            hasError = true;
+        }
+        if (ticketDate.isBlank()) {
+            dateField.setPromptText("Please enter a date");
+            hasError = true;
+        }
+
+        if (hasError) {
+            return; // Stop submission if any field is empty
         }
 
         // Get priority based on the selected type
@@ -50,6 +68,7 @@ public class AddTicket_Controller {
         Stage stage = (Stage) nameField.getScene().getWindow();
         stage.close();
     }
+
 
     // Handle the "Cancel" action (closes the window)
     @FXML private void handleCancel() {
