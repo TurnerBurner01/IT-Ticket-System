@@ -40,7 +40,7 @@ public class Ticket {
 
     // Generate Random ID for each ticket
     public int generateID() {
-        return 100 + random.nextInt(999);
+        return 100 + random.nextInt(990);
     }
 
     // Getter and Setter methods
