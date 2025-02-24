@@ -2,6 +2,7 @@ package com.example.itticketsystem.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Ticket {
     private int priority;
@@ -12,10 +13,12 @@ public class Ticket {
     private String name;
     private String date;
 
+    private static final Random random = new Random();
+
     // Constructor to create a ticket
     public Ticket(int priority, int id, Boolean status, String type, String description, String name, String date) {
         this.priority = priority;
-        this.id = id;
+        this.id = generateID();
         this.status = status;
         this.type = type;
         this.description = description;
@@ -35,8 +38,12 @@ public class Ticket {
         return typePriorityMap.getOrDefault(type, 10); // Default to lowest priority if type is unknown
     }
 
-    // Getter and Setter methods
+    // Generate Random ID for each ticket
+    public int generateID() {
+        return 100 + random.nextInt(999);
+    }
 
+    // Getter and Setter methods
     public int getPriority() {
         return priority;
     }
