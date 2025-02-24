@@ -16,11 +16,11 @@
         <Label layoutX="20" layoutY="100" text="OR" styleClass="formLabel"/>
 
         <Label layoutX="20" layoutY="140" text="Delete Completed Tickets:" styleClass="formLabel"/>
-        <CheckBox layoutX="200" layoutY="145" />
+        <CheckBox layoutX="200" layoutY="145" fx:id="deleteCheckbox" />
 
         <HBox spacing="20" layoutX="100" layoutY="210">
-            <Button text="Submit" styleClass="submit_cancelButtons"/>
-            <Button text="Cancel" styleClass="submit_cancelButtons"/>
+            <Button text="Submit" onAction="#handleSubmit" styleClass="submit_cancelButtons"/>
+            <Button text="Cancel" onAction="#handleCancel" styleClass="submit_cancelButtons"/>
         </HBox>
     </children>
 </AnchorPane>
