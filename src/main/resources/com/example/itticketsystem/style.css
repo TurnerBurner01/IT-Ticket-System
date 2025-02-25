@@ -84,3 +84,17 @@
     -fx-spacing: 30px;
 }
 /*--------------------------------------------------------------------------------------------*/
+/* Menu Button Above The Table*/
+.menuComboBox {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+}
+
+.menuIcons {
+    -fx-fit-width: 30px;
+    -fx-fit-height: 30px;
+}

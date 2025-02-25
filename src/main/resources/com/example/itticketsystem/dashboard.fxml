@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
-
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itticketsystem.Dashboard_Controller" stylesheets="@style.css">
+
+    <top>
+        <HBox spacing="10" alignment="TOP_RIGHT" style="-fx-padding: 10;" fx:id="buttonMenuHBox">
+            <ComboBox fx:id="columnComboBox" styleClass="menuComboBox" />
+            <ComboBox fx:id="detailsComboBox" styleClass="menuComboBox" />
+            <Button fx:id="addTicketIconButton" onAction="#openAddTicketWindow">
+                <graphic>
+                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                        <image>
+                            <Image url="@/img/layer-plus.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </top>
 
     <left>
         <VBox spacing="10" styleClass="vboxButtons">
-            <Button text="Add Ticket" onAction="#openAddTicketWindow" fx:id="addTicketButton" styleClass="menuButtons"/>
             <Button text="Delete Ticket" onAction="#openDeleteTicketWindow" fx:id="deleteTicketButton" styleClass="menuButtons"/>
             <Button text="Search Ticket" fx:id="searchTicketButton" styleClass="menuButtons"/>
             <Button text="Update Priority" fx:id="updatePriorityButton" styleClass="menuButtons"/>
