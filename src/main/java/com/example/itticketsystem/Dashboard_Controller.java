@@ -6,13 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,6 +27,8 @@ public class Dashboard_Controller {
     @FXML private TableColumn<Ticket, String> descriptionColumn;
     @FXML private TableColumn<Ticket, String> nameColumn;
     @FXML private TableColumn<Ticket, String> dateColumn;
+
+    // Initialise ComboBoxes
     @FXML private ComboBox<String> columnComboBox;
     @FXML private ComboBox<String> detailsComboBox;
 
@@ -51,7 +51,7 @@ public class Dashboard_Controller {
         loadTestData();
 
         // Initialize Menu ComboBox
-        columnComboBox.getItems().addAll("Priority", "ID", "Status", "Type", "Name");
+        columnComboBox.getItems().addAll("Priority", "ID", "Status", "Type", "Name", "Date");
         // Add a listener to the first ComboBox
         columnComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             updateDetailsComboBox(newValue);
@@ -136,7 +136,7 @@ public class Dashboard_Controller {
             switch (selectedField) {
                 case "Priority":
                     List<String> priority = ticketTable.getItems().stream()
-                            .map(ticket -> String.valueOf(ticket.getPriority()))    // Convert Priority int to String
+                            .map(ticket -> String.valueOf(ticket.getPriority()))        // Convert Priority int to String
                             .distinct()
                             .collect(Collectors.toList());
                     detailsComboBox.getItems().addAll(priority);
@@ -150,14 +150,14 @@ public class Dashboard_Controller {
                     break;
                 case "Status":
                     List<String> status = ticketTable.getItems().stream()
-                            .map(ticket -> String.valueOf(ticket.getStatus()))
+                            .map(ticket -> ticket.getStatus() ? "Active" : "Inactive")  // Convert Boolean status to String
                             .distinct()
                             .collect(Collectors.toList());
                     detailsComboBox.getItems().addAll(status);
                     break;
                 case "Type":
                     List<String> type = ticketTable.getItems().stream()
-                            .map(ticket -> ticket.getStatus() ? "Active" : "Inactive")  // Convert Boolean status to String
+                            .map(Ticket::getType)
                             .distinct()
                             .collect(Collectors.toList());
                     detailsComboBox.getItems().addAll(type);
@@ -168,6 +168,13 @@ public class Dashboard_Controller {
                             .distinct()
                             .collect(Collectors.toList());
                     detailsComboBox.getItems().addAll(name);
+                    break;
+                case "Date":
+                    List<String> date = ticketTable.getItems().stream()
+                            .map(Ticket::getDate)
+                            .distinct()
+                            .collect(Collectors.toList());
+                    detailsComboBox.getItems().addAll(date);
                     break;
 
                 default:
