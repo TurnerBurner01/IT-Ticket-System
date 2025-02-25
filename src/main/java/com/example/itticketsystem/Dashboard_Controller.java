@@ -144,8 +144,9 @@ public class Dashboard_Controller {
         Ticket[] tempFiltered = new Ticket[allTickets.length];
         int count = 0;
 
-        // Iterate through all tickets and filter them
+        // Iterate through all tickets
         for (Ticket ticket : allTickets) {
+            // Iterates through the selected column of the table using switch case
             boolean matches = switch (selectedColumn) {
                 case "Priority" -> String.valueOf(ticket.getPriority()).equals(selectedValue);
                 case "ID" -> String.valueOf(ticket.getId()).equals(selectedValue);
@@ -163,7 +164,7 @@ public class Dashboard_Controller {
             }
         }
 
-        // Create a properly sized array to return (excluding null values)
+        // Create an array to return
         Ticket[] filteredArray = new Ticket[count];
         for (int i = 0; i < count; i++) {
             filteredArray[i] = tempFiltered[i];
