@@ -47,7 +47,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="refreshTableIconButton" >
+            <Button fx:id="refreshTableIconButton" onAction="#refreshTable">
                 <graphic>
                     <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
                         <image>

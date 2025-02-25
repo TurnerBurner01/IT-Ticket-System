@@ -63,7 +63,7 @@ public class Dashboard_Controller {
         // Add test data
         loadTestData();
 
-        // Initialize Menu ComboBox
+        // Populate ComboBox 1
         columnComboBox.getItems().addAll("Priority", "ID", "Status", "Type", "Name", "Date");
         // Add a listener to the first ComboBox
         columnComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -116,6 +116,24 @@ public class Dashboard_Controller {
         ticketService.updatePriorities();                               // Update priorities after insertion
         ticketTable.getItems().clear();                                 // Clear the TableView before reloading
         ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
+    }
+
+    // Method is used to reset / repopulate the table to its original state
+    @FXML private void refreshTable() {
+        // Reset ComboBoxes
+        columnComboBox.setValue(null);
+        detailsComboBox.setValue(null);
+
+        // Gather all tickets from the BST
+        Ticket[] allTickets = ticketService.getAllTickets();
+
+        // Clear the table
+        ticketTable.getItems().clear();
+
+        // Add tickets to the table
+        for (Ticket ticket : allTickets) {
+            ticketTable.getItems().add(ticket);
+        }
     }
 
     // Method is used to search the BST and alter the table content based on attributes elected
