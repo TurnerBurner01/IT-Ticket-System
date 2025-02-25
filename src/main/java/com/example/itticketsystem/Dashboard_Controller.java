@@ -182,7 +182,7 @@ public class Dashboard_Controller {
             // Get all tickets from the table
             Ticket[] tickets = ticketTable.getItems().toArray(new Ticket[0]);
 
-            // Temporary array to store unique values (size set to max possible: number of tickets)
+            // Temporary array to store unique values (size set to number of tickets)
             String[] uniqueValues = new String[tickets.length];
             int uniqueCount = 0;
 
