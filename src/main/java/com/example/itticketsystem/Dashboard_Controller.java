@@ -140,12 +140,12 @@ public class Dashboard_Controller {
         // Get all tickets from the BinarySearchTree
         Ticket[] allTickets = ticketService.getAllTickets();
 
-        // Initialize a list to hold the filtered tickets
-        List<Ticket> filteredList = new ArrayList<>();
+        // Temporary array for storing filtered tickets (size set to number of tickets)
+        Ticket[] tempFiltered = new Ticket[allTickets.length];
+        int count = 0;
 
         // Iterate through all tickets and filter them
         for (Ticket ticket : allTickets) {
-            // Filter based on selected column
             boolean matches = switch (selectedColumn) {
                 case "Priority" -> String.valueOf(ticket.getPriority()).equals(selectedValue);
                 case "ID" -> String.valueOf(ticket.getId()).equals(selectedValue);
@@ -156,16 +156,22 @@ public class Dashboard_Controller {
                 default -> false;
             };
 
-            // If the ticket matches the filter it adds it to the filtered list
+            // If the ticket matches the filter, add it to the temporary array
             if (matches) {
-                filteredList.add(ticket);
+                tempFiltered[count] = ticket;
+                count++;
             }
         }
 
-        // Convert filtered list to array
-        Ticket[] filteredArray = new Ticket[filteredList.size()];
-        return filteredList.toArray(filteredArray);
+        // Create a properly sized array to return (excluding null values)
+        Ticket[] filteredArray = new Ticket[count];
+        for (int i = 0; i < count; i++) {
+            filteredArray[i] = tempFiltered[i];
+        }
+
+        return filteredArray;
     }
+
 
     // Method to populate the detailsComboBox
     public void updateDetailsComboBox(String selectedField) {
