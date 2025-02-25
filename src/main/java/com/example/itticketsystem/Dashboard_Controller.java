@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,13 +27,14 @@ public class Dashboard_Controller {
     @FXML private TableColumn<Ticket, String> descriptionColumn;
     @FXML private TableColumn<Ticket, String> nameColumn;
     @FXML private TableColumn<Ticket, String> dateColumn;
-    @FXML private Button addTicketButtonIcon;
+    @FXML private ComboBox<String> columnComboBox;
 
     private BinarySearchTree ticketService;
 
     @FXML public void initialize() {
-        // Initialize the BinarySearchTree service for tickets
+        // Initialize
         ticketService = new BinarySearchTree();
+        columnComboBox.getItems().addAll("Priority", "ID", "Status", "Type", "Name");
 
         // Set up table columns
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
