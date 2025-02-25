@@ -6,26 +6,6 @@
 }
 
 /*--------------------------------------------------------------------------------------------*/
-/*Menu Button Style*/
-.menuButtons {
-    -fx-background-color: #3498db;  /* Set background color */
-    -fx-text-fill: white;            /* Set text color */
-    -fx-font-size: 14px;             /* Set font size */
-    -fx-padding: 10px 20px;          /* Set padding */
-    -fx-border-radius: 5px;         /* Set border radius */
-    -fx-min-width: 150px;           /* Set button minimum width to all be the same*/
-}
-
-.menuButtons:hover {
-    -fx-background-color: #214667;
-}
-
-.vboxButtons {
-    -fx-padding: 100px 20px 50px 20px; /*top, right, bottom, lef*/ /* Set position on scene*/
-}
-
-
-/*--------------------------------------------------------------------------------------------*/
 /*Form Style*/
 
 /* Title Label Style */
