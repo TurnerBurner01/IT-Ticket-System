@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,8 +46,7 @@ public class Dashboard_Controller {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         statusColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<Ticket, Boolean>() {
             // Method makes true : false = Active : Solved
-            @Override
-            public void updateItem(Boolean item, boolean empty) {
+            @Override public void updateItem(Boolean item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
@@ -86,6 +86,7 @@ public class Dashboard_Controller {
         ticketTable.getItems().addAll(ticketService.getAllTickets());
     }
 
+    // Opens the AddTicket Window
     @FXML private void openAddTicketWindow() {
         try {
             // Load the "Add Ticket" window
@@ -109,38 +110,6 @@ public class Dashboard_Controller {
         }
     }
 
-    @FXML private void searchTickets() {
-        String selectedColumn = columnComboBox.getValue();
-        String selectedValue = detailsComboBox.getValue();
-
-        if (selectedColumn == null || selectedValue == null) {
-            return; // Do nothing if selection is not complete
-        }
-
-        List<Ticket> filteredTickets = Arrays.stream(ticketService.getAllTickets()) // Convert array to stream
-                .filter(ticket -> {
-                    switch (selectedColumn) {
-                        case "Priority":
-                            return String.valueOf(ticket.getPriority()).equals(selectedValue);
-                        case "ID":
-                            return String.valueOf(ticket.getId()).equals(selectedValue);
-                        case "Status":
-                            return (ticket.getStatus() ? "Active" : "Solved").equals(selectedValue);
-                        case "Type":
-                            return ticket.getType().equals(selectedValue);
-                        case "Name":
-                            return ticket.getName().equals(selectedValue);
-                        case "Date":
-                            return ticket.getDate().equals(selectedValue);
-                        default:
-                            return false;
-                    }
-                })
-                .collect(Collectors.toList());
-
-        ticketTable.getItems().setAll(filteredTickets);
-    }
-
     // Method to add ticket to the table from AddTicket_Controller
     public void addTicketToTable(Ticket newTicket) {
         ticketService.insert(newTicket);                                // Add ticket to BinarySearchTree
@@ -149,60 +118,100 @@ public class Dashboard_Controller {
         ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
     }
 
+    // Method is used to search the BST and alter the table content based on attributes elected
+    @FXML private void searchTickets() {
+        // Get the selected column and filter value
+        String selectedColumn = columnComboBox.getValue();
+        String selectedValue = detailsComboBox.getValue();
+
+        // Checks if the ComboBoxes are not empty -> If so then nothing happens
+        if (selectedColumn != null && selectedValue != null) {
+            // Filter tickets based on the selected column and value
+            Ticket[] filteredTickets = filterTickets(selectedColumn, selectedValue);
+
+            // Update the table with the filtered tickets
+            ticketTable.getItems().clear();
+            ticketTable.getItems().addAll(filteredTickets);
+        }
+    }
+
+    // Method is used to filter through tickets in BST to find the correct tickets
+    private Ticket[] filterTickets(String selectedColumn, String selectedValue) {
+        // Get all tickets from the BinarySearchTree
+        Ticket[] allTickets = ticketService.getAllTickets();
+
+        // Initialize a list to hold the filtered tickets
+        List<Ticket> filteredList = new ArrayList<>();
+
+        // Iterate through all tickets and filter them
+        for (Ticket ticket : allTickets) {
+            // Filter based on selected column
+            boolean matches = switch (selectedColumn) {
+                case "Priority" -> String.valueOf(ticket.getPriority()).equals(selectedValue);
+                case "ID" -> String.valueOf(ticket.getId()).equals(selectedValue);
+                case "Status" -> (ticket.getStatus() ? "Active" : "Solved").equals(selectedValue);
+                case "Type" -> ticket.getType().equals(selectedValue);
+                case "Name" -> ticket.getName().equals(selectedValue);
+                case "Date" -> ticket.getDate().equals(selectedValue);
+                default -> false;
+            };
+
+            // If the ticket matches the filter it adds it to the filtered list
+            if (matches) {
+                filteredList.add(ticket);
+            }
+        }
+
+        // Convert filtered list to array
+        Ticket[] filteredArray = new Ticket[filteredList.size()];
+        return filteredList.toArray(filteredArray);
+    }
+
     // Method to populate the detailsComboBox
-    public void updateDetailsComboBox (String selectedField) {
-        detailsComboBox.getItems().clear();     // clear existing items in the detailsComboBox
+    public void updateDetailsComboBox(String selectedField) {
+        detailsComboBox.getItems().clear(); // Clear existing items in the detailsComboBox
 
-        // Populate the ComboBox based on the selected field
         if (selectedField != null) {
-            switch (selectedField) {
-                case "Priority":
-                    List<String> priority = ticketTable.getItems().stream()
-                            .map(ticket -> String.valueOf(ticket.getPriority()))        // Convert Priority int to String
-                            .distinct()
-                            .collect(Collectors.toList());
-                    detailsComboBox.getItems().addAll(priority);
-                    break;
-                case "ID":
-                    List<String> ids = ticketTable.getItems().stream()
-                            .map(ticket -> String.valueOf(ticket.getId()))
-                            .distinct()
-                            .collect(Collectors.toList());
-                    detailsComboBox.getItems().addAll(ids);
-                    break;
-                case "Status":
-                    List<String> status = ticketTable.getItems().stream()
-                            .map(ticket -> ticket.getStatus() ? "Active" : "Solved")  // Convert Boolean status to String
-                            .distinct()
-                            .collect(Collectors.toList());
-                    detailsComboBox.getItems().addAll(status);
-                    break;
-                case "Type":
-                    List<String> type = ticketTable.getItems().stream()
-                            .map(Ticket::getType)
-                            .distinct()
-                            .collect(Collectors.toList());
-                    detailsComboBox.getItems().addAll(type);
-                    break;
-                case "Name":
-                    List<String> name = ticketTable.getItems().stream()
-                            .map(Ticket::getName)
-                            .distinct()
-                            .collect(Collectors.toList());
-                    detailsComboBox.getItems().addAll(name);
-                    break;
-                case "Date":
-                    List<String> date = ticketTable.getItems().stream()
-                            .map(Ticket::getDate)
-                            .distinct()
-                            .collect(Collectors.toList());
-                    detailsComboBox.getItems().addAll(date);
-                    break;
+            // Get all tickets from the table
+            Ticket[] tickets = ticketTable.getItems().toArray(new Ticket[0]);
 
-                default:
-                    throw new IllegalStateException("Unexpected value: " + selectedField);
+            // Temporary array to store unique values (size set to max possible: number of tickets)
+            String[] uniqueValues = new String[tickets.length];
+            int uniqueCount = 0;
+
+            for (Ticket ticket : tickets) {
+                String value = switch (selectedField) {
+                    case "Priority" -> String.valueOf(ticket.getPriority());
+                    case "ID" -> String.valueOf(ticket.getId());
+                    case "Status" -> ticket.getStatus() ? "Active" : "Solved";
+                    case "Type" -> ticket.getType();
+                    case "Name" -> ticket.getName();
+                    case "Date" -> ticket.getDate();
+                    default -> throw new IllegalStateException("Unexpected value: " + selectedField);
+                };
+
+                // Check if value is already in the uniqueValues array
+                boolean isDuplicate = false;
+                for (int i = 0; i < uniqueCount; i++) {
+                    if (uniqueValues[i].equals(value)) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                // If not a duplicate, add to the array
+                if (!isDuplicate) {
+                    uniqueValues[uniqueCount] = value;
+                    uniqueCount++;
+                }
+            }
+
+            // Add unique values to the ComboBox
+            for (int i = 0; i < uniqueCount; i++) {
+                detailsComboBox.getItems().add(uniqueValues[i]);
             }
         }
     }
+
 }
 
