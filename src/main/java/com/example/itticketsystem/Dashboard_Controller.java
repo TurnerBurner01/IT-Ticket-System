@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Dashboard_Controller {
 
@@ -28,13 +30,13 @@ public class Dashboard_Controller {
     @FXML private TableColumn<Ticket, String> nameColumn;
     @FXML private TableColumn<Ticket, String> dateColumn;
     @FXML private ComboBox<String> columnComboBox;
+    @FXML private ComboBox<String> detailsComboBox;
 
     private BinarySearchTree ticketService;
 
     @FXML public void initialize() {
-        // Initialize
+        // Initialize Binary Search Tree
         ticketService = new BinarySearchTree();
-        columnComboBox.getItems().addAll("Priority", "ID", "Status", "Type", "Name");
 
         // Set up table columns
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
@@ -45,7 +47,15 @@ public class Dashboard_Controller {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
+        // Add test data
         loadTestData();
+
+        // Initialize Menu ComboBox
+        columnComboBox.getItems().addAll("Priority", "ID", "Status", "Type", "Name");
+        // Add a listener to the first ComboBox
+        columnComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            updateDetailsComboBox(newValue);
+        });
     }
 
     private void loadTestData() {
@@ -116,4 +126,54 @@ public class Dashboard_Controller {
         ticketTable.getItems().clear();                                 // Clear the TableView before reloading
         ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
     }
+
+    // Method to populate the detailsComboBox
+    public void updateDetailsComboBox (String selectedField) {
+        detailsComboBox.getItems().clear();     // clear existing items in the detailsComboBox
+
+        // Populate the ComboBox based on the selected field
+        if (selectedField != null) {
+            switch (selectedField) {
+                case "Priority":
+                    List<String> priority = ticketTable.getItems().stream()
+                            .map(ticket -> String.valueOf(ticket.getPriority()))    // Convert Priority int to String
+                            .distinct()
+                            .collect(Collectors.toList());
+                    detailsComboBox.getItems().addAll(priority);
+                    break;
+                case "ID":
+                    List<String> ids = ticketTable.getItems().stream()
+                            .map(ticket -> String.valueOf(ticket.getId()))
+                            .distinct()
+                            .collect(Collectors.toList());
+                    detailsComboBox.getItems().addAll(ids);
+                    break;
+                case "Status":
+                    List<String> status = ticketTable.getItems().stream()
+                            .map(ticket -> String.valueOf(ticket.getStatus()))
+                            .distinct()
+                            .collect(Collectors.toList());
+                    detailsComboBox.getItems().addAll(status);
+                    break;
+                case "Type":
+                    List<String> type = ticketTable.getItems().stream()
+                            .map(ticket -> ticket.getStatus() ? "Active" : "Inactive")  // Convert Boolean status to String
+                            .distinct()
+                            .collect(Collectors.toList());
+                    detailsComboBox.getItems().addAll(type);
+                    break;
+                case "Name":
+                    List<String> name = ticketTable.getItems().stream()
+                            .map(Ticket::getName)
+                            .distinct()
+                            .collect(Collectors.toList());
+                    detailsComboBox.getItems().addAll(name);
+                    break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + selectedField);
+            }
+        }
+    }
 }
+
