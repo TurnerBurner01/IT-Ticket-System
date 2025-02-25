@@ -42,6 +42,18 @@ public class Dashboard_Controller {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<Ticket, Boolean>() {
+            // Method makes true : false = Active : Solved
+            @Override
+            public void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item ? "Active" : "Solved");
+                }
+            }
+        });
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -150,7 +162,7 @@ public class Dashboard_Controller {
                     break;
                 case "Status":
                     List<String> status = ticketTable.getItems().stream()
-                            .map(ticket -> ticket.getStatus() ? "Active" : "Inactive")  // Convert Boolean status to String
+                            .map(ticket -> ticket.getStatus() ? "Active" : "Solved")  // Convert Boolean status to String
                             .distinct()
                             .collect(Collectors.toList());
                     detailsComboBox.getItems().addAll(status);
