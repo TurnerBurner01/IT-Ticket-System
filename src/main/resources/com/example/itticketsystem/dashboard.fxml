@@ -16,8 +16,6 @@
 
     <top>
         <HBox spacing="10" alignment="TOP_RIGHT" style="-fx-padding: 10;" fx:id="buttonMenuHBox">
-            <ComboBox fx:id="columnComboBox" styleClass="menuComboBox" />
-            <ComboBox fx:id="detailsComboBox" styleClass="menuComboBox" />
             <Button fx:id="addTicketIconButton" onAction="#openAddTicketWindow">
                 <graphic>
                     <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
@@ -27,16 +25,40 @@
                     </ImageView>
                 </graphic>
             </Button>
+
+            <ComboBox fx:id="columnComboBox" styleClass="menuComboBox" />
+            <ComboBox fx:id="detailsComboBox" styleClass="menuComboBox" />
+
+            <Button fx:id="addsearchIconButton">
+                <graphic>
+                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                        <image>
+                            <Image url="@/img/search.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="addDeleteIconButton">
+                <graphic>
+                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                        <image>
+                            <Image url="@/img/trash.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="refreshTableIconButton" >
+                <graphic>
+                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                        <image>
+                            <Image url="@/img/refresh.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
         </HBox>
     </top>
-
-    <left>
-        <VBox spacing="10" styleClass="vboxButtons">
-            <Button text="Delete Ticket" onAction="#openDeleteTicketWindow" fx:id="deleteTicketButton" styleClass="menuButtons"/>
-            <Button text="Search Ticket" fx:id="searchTicketButton" styleClass="menuButtons"/>
-            <Button text="Update Priority" fx:id="updatePriorityButton" styleClass="menuButtons"/>
-        </VBox>
-    </left>
 
     <center>
         <TableView fx:id="ticketTable" >
