@@ -5,27 +5,8 @@
     -fx-padding: 20px;
 }
 
-/*---------------------------*/
-/*Menu Button Style*/
-.menuButtons {
-    -fx-background-color: #3498db;  /* Set background color */
-    -fx-text-fill: white;            /* Set text color */
-    -fx-font-size: 14px;             /* Set font size */
-    -fx-padding: 10px 20px;          /* Set padding */
-    -fx-border-radius: 5px;         /* Set border radius */
-    -fx-min-width: 150px;           /* Set button minimum width to all be the same*/
-}
-
-.menuButtons:hover {
-    -fx-background-color: #214667;
-}
-
-.vboxButtons {
-    -fx-padding: 100px 20px 50px 20px; /*top, right, bottom, lef*/ /* Set position on scene*/
-}
-
-/*---------------------------*/
-/*Adding Ticket Style*/
+/*--------------------------------------------------------------------------------------------*/
+/*Form Style*/
 
 /* Title Label Style */
 .titleLabel {
@@ -63,8 +44,8 @@
     -fx-pref-width: 250px;
 }
 
-/* Button Styles */
-.addTicketButtons {
+/* "Submit" & "Cancel" Button Styles */
+.submit_cancelButtons {
     -fx-background-color: #3498db;
     -fx-text-fill: white;
     -fx-font-size: 15px;
@@ -74,13 +55,26 @@
     -fx-min-height: 40px;
 }
 
-/* Button Hover Effect */
-.addTicketButtons:hover {
-    -fx-background-color: #214667;  /* Darker color on hover */
+.submit_cancelButtons:hover {
+    -fx-background-color: #214667;
 }
 
 /* Add spacing between elements */
 .children {
     -fx-spacing: 30px;
 }
-/*---------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+/* Menu Button Above The Table*/
+.menuComboBox {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+}
+
+.menuIcons {
+    -fx-fit-width: 30px;
+    -fx-fit-height: 30px;
+}

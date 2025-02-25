@@ -52,10 +52,10 @@ public class AddTicket_Controller {
         }
 
         // Get priority based on the selected type
-        int ticketPriority = new Ticket(0, true, ticketType, ticketDescription, ticketName, ticketDate).getTypePriority();
+        int ticketPriority = new Ticket(0, 0, true, ticketType, ticketDescription, ticketName, ticketDate).getTypePriority();
 
         // Create a new Ticket with the selected type and set the priority
-        Ticket newTicket = new Ticket(ticketPriority, true, ticketType, ticketDescription, ticketName, ticketDate);
+        Ticket newTicket = new Ticket(ticketPriority, 0, true, ticketType, ticketDescription, ticketName, ticketDate);
 
         // Pass the new ticket to the Dashboard_Controller
         if (dashboardController != null) {

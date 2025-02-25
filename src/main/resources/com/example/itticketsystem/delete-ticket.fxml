@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.itticketsystem.DeleteTicket_Controller" stylesheets="@style.css">
+    <children>
+        <Label layoutX="20" layoutY="20" text="Delete Ticket" styleClass="titleLabel"/>
+
+        <Label layoutX="20" layoutY="60" text="Delete ID:" styleClass="formLabel"/>
+        <ComboBox fx:id="TicketComboBox" layoutX="100" layoutY="60" styleClass="formComboBox"/>
+
+        <HBox spacing="20" layoutX="100" layoutY="210">
+            <Button text="Submit" onAction="#handleSubmit" styleClass="submit_cancelButtons"/>
+            <Button text="Cancel" onAction="#handleCancel" styleClass="submit_cancelButtons"/>
+        </HBox>
+    </children>
+</AnchorPane>
