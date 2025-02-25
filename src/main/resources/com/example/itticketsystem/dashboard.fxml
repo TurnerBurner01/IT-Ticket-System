@@ -29,7 +29,7 @@
             <ComboBox fx:id="columnComboBox" styleClass="menuComboBox" />
             <ComboBox fx:id="detailsComboBox" styleClass="menuComboBox" />
 
-            <Button fx:id="addsearchIconButton">
+            <Button fx:id="addsearchIconButton" onAction="#searchTickets">
                 <graphic>
                     <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
                         <image>

@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,7 +75,7 @@ public class Dashboard_Controller {
         // Adding test data to BinarySearchTree
         ticketService.insert(new Ticket(0, 0, true, "Critical Issue", "Floor Shut Down", "James W", "6/03/2025"));
         ticketService.insert(new Ticket(0,0, true, "System Failure", "Urgent fix needed", "Alice W", "18/02/2025"));
-        ticketService.insert(new Ticket(0,0, true, "New Equipment", "Need a new monitor", "Bob J", "19/02/2025"));
+        ticketService.insert(new Ticket(0,0, false, "New Equipment", "Need a new monitor", "Bob J", "19/02/2025"));
         ticketService.insert(new Ticket(0,0, true, "Critical Issue", "Server down", "Charlie Z", "17/02/2025"));
         ticketService.insert(new Ticket(0,0,  false, "Software Bug", "Photoshop not working", "David L", "20/02/2025"));
 
@@ -108,27 +109,36 @@ public class Dashboard_Controller {
         }
     }
 
-    @FXML private void openDeleteTicketWindow() {
-        try {
-            // Load the "Delete Ticket" window
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("delete-ticket.fxml"));
-            Parent root = fxmlLoader.load();
+    @FXML private void searchTickets() {
+        String selectedColumn = columnComboBox.getValue();
+        String selectedValue = detailsComboBox.getValue();
 
-            // Get the controller of the DeleteTicket window
-            DeleteTicket_Controller DeleteTickerController = fxmlLoader.getController();
-
-            // Pass the reference of this (Dashboard_Controller) to the DeleteTicket_Controller
-            DeleteTickerController.setDashboardController(this);
-
-            // Show the DeleteTicket window
-            Stage stage = new Stage();
-            stage.setTitle("Delete Ticket");
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (selectedColumn == null || selectedValue == null) {
+            return; // Do nothing if selection is not complete
         }
+
+        List<Ticket> filteredTickets = Arrays.stream(ticketService.getAllTickets()) // Convert array to stream
+                .filter(ticket -> {
+                    switch (selectedColumn) {
+                        case "Priority":
+                            return String.valueOf(ticket.getPriority()).equals(selectedValue);
+                        case "ID":
+                            return String.valueOf(ticket.getId()).equals(selectedValue);
+                        case "Status":
+                            return (ticket.getStatus() ? "Active" : "Solved").equals(selectedValue);
+                        case "Type":
+                            return ticket.getType().equals(selectedValue);
+                        case "Name":
+                            return ticket.getName().equals(selectedValue);
+                        case "Date":
+                            return ticket.getDate().equals(selectedValue);
+                        default:
+                            return false;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        ticketTable.getItems().setAll(filteredTickets);
     }
 
     // Method to add ticket to the table from AddTicket_Controller
