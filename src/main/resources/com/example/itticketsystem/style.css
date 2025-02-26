@@ -43,7 +43,7 @@
 /*--------------------------------------------------------------------------------------------*/
 /* Menu Above The Table */
 .MenuHBox {
-    -fx-background-color: #145DA0;
+    -fx-background-color: #266a9f;
     -fx-pref-width: 100%;
     -fx-pref-height: 60px;
     -fx-padding: 15px;
@@ -88,7 +88,7 @@
 
 /* Styling for the Top Section */
 .top {
-    -fx-background-color: #055C9D;
+    -fx-background-color: #266a9f;
     -fx-padding: 10px 20px;
     -fx-hgrow: ALWAYS;
 }
@@ -97,8 +97,15 @@
 .top .HBox {
     -fx-spacing: 20px;
     -fx-alignment: center-right;
-    -fx-hgrow: ALWAYS;
 }
+
+/*--------------------------------------------------------------------------------------------*/
+/* Side Bar Menu The Table */
+.sideMenuVBox {
+    -fx-background-color: #266a9f;
+    -fx-padding: 5px;
+}
+
 
 /*--------------------------------------------------------------------------------------------*/
 /* Table Styling  */
