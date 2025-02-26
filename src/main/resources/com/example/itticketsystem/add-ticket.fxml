@@ -4,26 +4,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.itticketsystem.AddTicket_Controller" stylesheets="@style.css">
     <children>
         <Label layoutX="20" layoutY="20" text="Add New Ticket" styleClass="titleLabel"/>
 
         <Label layoutX="20" layoutY="60" text="Name:" styleClass="formLabel"/>
-        <TextField fx:id="nameField" layoutX="100" layoutY="60" styleClass="formTextField"/>
+        <TextField fx:id="nameField" layoutX="120" layoutY="60" styleClass="formTextField"/>
 
         <Label layoutX="20" layoutY="100" text="Type:" styleClass="formLabel"/>
-        <ComboBox fx:id="typeComboBox" layoutX="100" layoutY="100" styleClass="formComboBox"/>
+        <ComboBox fx:id="typeComboBox" layoutX="120" layoutY="100" styleClass="formComboBox"/>
 
         <Label layoutX="20" layoutY="140" text="Description:" styleClass="formLabel"/>
-        <TextField fx:id="descriptionField" layoutX="100" layoutY="140" styleClass="formTextField"/>
+        <TextField fx:id="descriptionField" layoutX="120" layoutY="140" styleClass="formTextField"/>
 
         <Label layoutX="20" layoutY="180" text="Date:" styleClass="formLabel"/>
-        <TextField fx:id="dateField" layoutX="100" layoutY="180" styleClass="formTextField"/>
+        <TextField fx:id="dateField" layoutX="120" layoutY="180" styleClass="formTextField"/>
 
         <HBox spacing="20" layoutX="100" layoutY="220">
-            <Button text="Submit" onAction="#handleSubmit" styleClass="submit_cancelButtons"/>
-            <Button text="Cancel" onAction="#handleCancel" styleClass="submit_cancelButtons"/>
+            <Button fx:id="submitIconButton" onAction="#handleSubmit" >
+                <graphic>
+                    <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
+                        <image>
+                            <Image url="@/img/check.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button fx:id="cancelIconButton" onAction="#handleCancel" >
+                <graphic>
+                    <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
+                        <image>
+                            <Image url="@/img/cross.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
         </HBox>
     </children>
+
 </AnchorPane>
 

@@ -105,6 +105,8 @@ public class Dashboard_Controller {
             Stage stage = new Stage();
             stage.setTitle("Add New Ticket");
             stage.setScene(new Scene(root));
+            stage.setWidth(350);
+            stage.setHeight(310);
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
