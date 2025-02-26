@@ -2,7 +2,6 @@
 .root {
     -fx-font-family: "Arial";
     -fx-background-color: #B1D4E0;
-    -fx-padding: 20px;
     -fx-hgrow: ALWAYS;
 }
 
@@ -128,11 +127,16 @@
 /*--------------------------------------------------------------------------------------------*/
 /* Table Styling  */
 .table-view {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #BDC3C7;
-    -fx-hgrow: ALWAYS;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
+    -fx-hgrow: NEVER;
     -fx-vgrow: ALWAYS;
+    -fx-pref-width: 635px;
     -fx-border-radius: 0px 0px 10px 10px;
+}
+
+.table-view .table-column {
+    -fx-hgrow: NEVER;
 }
 
 .table-view .column-header {
@@ -144,6 +148,8 @@
 .table-view .cell {
     -fx-background-color: #FDFBD4;
     -fx-text-fill: #333333;
+    -fx-border-color: #D9D7B6;
+    -fx-border-width: 0 1px 1px 0;
 }
 
 .table-view .table-cell {
