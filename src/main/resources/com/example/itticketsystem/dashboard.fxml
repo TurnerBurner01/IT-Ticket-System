@@ -15,10 +15,10 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itticketsystem.Dashboard_Controller" stylesheets="@style.css">
 
     <top>
-        <HBox spacing="10" alignment="TOP_RIGHT" style="-fx-padding: 10;" fx:id="buttonMenuHBox">
+        <HBox spacing="10" alignment="TOP_RIGHT" style="-fx-padding: 10;" HBox.hgrow="ALWAYS" styleClass="MenuHBox">
             <Button fx:id="addTicketIconButton" onAction="#openAddTicketWindow">
                 <graphic>
-                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                    <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
                         <image>
                             <Image url="@/img/layer-plus.png"/>
                         </image>
@@ -29,39 +29,40 @@
             <ComboBox fx:id="columnComboBox" styleClass="menuComboBox" />
             <ComboBox fx:id="detailsComboBox" styleClass="menuComboBox" />
 
-            <Button fx:id="addsearchIconButton" onAction="#searchTickets">
+            <Button fx:id="addsearchIconButton" onAction="#searchTickets" >
                 <graphic>
-                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                    <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
                         <image>
                             <Image url="@/img/search.png"/>
                         </image>
                     </ImageView>
                 </graphic>
             </Button>
+
             <Button fx:id="addDeleteIconButton">
                 <graphic>
-                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                    <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
                         <image>
                             <Image url="@/img/trash.png"/>
                         </image>
                     </ImageView>
                 </graphic>
             </Button>
+
             <Button fx:id="refreshTableIconButton" onAction="#refreshTable">
                 <graphic>
-                    <ImageView styleClass="menuIcons" fitWidth="30" fitHeight="30">
+                    <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
                         <image>
                             <Image url="@/img/refresh.png"/>
                         </image>
                     </ImageView>
                 </graphic>
             </Button>
-
         </HBox>
     </top>
 
     <center>
-        <TableView fx:id="ticketTable" >
+        <TableView fx:id="ticketTable" HBox.hgrow="ALWAYS">
             <columns>
                 <TableColumn text="Priority" prefWidth="58" fx:id="priorityColumn"/>
                 <TableColumn text="ID" prefWidth="35" fx:id="idColumn"/>
@@ -69,9 +70,10 @@
                 <TableColumn text="Type" prefWidth="150" fx:id="typeColumn"/>
                 <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
                 <TableColumn text="Name" prefWidth="100" fx:id="nameColumn"/>
-                <TableColumn text="Date" prefWidth="80" fx:id="dateColumn"/>
+                <TableColumn text="Date" fx:id="dateColumn"/>
             </columns>
         </TableView>
     </center>
 
 </BorderPane>
+

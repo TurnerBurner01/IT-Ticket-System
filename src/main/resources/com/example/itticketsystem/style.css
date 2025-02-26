@@ -1,12 +1,13 @@
 /* Global Styles */
 .root {
-    -fx-font-family: "Arial";       /* Setting font for all elements */
-    -fx-background-color: #ecf0f1;  /* Light background color */
+    -fx-font-family: "Arial";
+    -fx-background-color: #B1D4E0;
     -fx-padding: 20px;
+    -fx-hgrow: ALWAYS;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-/*Form Style*/
+/* Form Style */
 
 /* Title Label Style */
 .titleLabel {
@@ -56,25 +57,95 @@
 }
 
 .submit_cancelButtons:hover {
-    -fx-background-color: #214667;
+    -fx-background-color: #0C2D48;
 }
 
 /* Add spacing between elements */
 .children {
     -fx-spacing: 30px;
 }
+
 /*--------------------------------------------------------------------------------------------*/
-/* Menu Button Above The Table*/
-.menuComboBox {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-    -fx-font-size: 14px;
-    -fx-pref-width: 150px;
+/* Menu Above The Table */
+.MenuHBox {
+    -fx-background-color: #145DA0;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 60px;
+    -fx-padding: 15px;
+    -fx-spacing: 20px;
+    -fx-hgrow: ALWAYS;
 }
 
+/* ComboBox Styling */
+.menuComboBox {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #BDC3C7;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 180px;
+    -fx-effect: innershadow( gaussian, rgba(0, 0, 0, 0.1), 5, 0.0, 2, 2 );
+}
+
+/* Icon Styling */
 .menuIcons {
-    -fx-fit-width: 30px;
-    -fx-fit-height: 30px;
+    -fx-fit-width: 16px;
+    -fx-fit-height: 16px;
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.2), 4, 0.0, 0, 1 );
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 50%;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.2), 5, 0.0, 0, 1 );
+}
+
+.button:hover {
+    -fx-background-color: #B0B0B0;
+}
+
+.button:pressed {
+    -fx-background-color: #A0A0A0;
+}
+
+/* Styling for the Top Section */
+.top {
+    -fx-background-color: #055C9D;
+    -fx-padding: 10px 20px;
+    -fx-hgrow: ALWAYS;
+}
+
+/* Spacing and layout within the top area */
+.top .HBox {
+    -fx-spacing: 20px;
+    -fx-alignment: center-right;
+    -fx-hgrow: ALWAYS;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+/* Table Styling  */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #BDC3C7;
+    -fx-hgrow: ALWAYS;
+    -fx-vgrow: ALWAYS;
+    -fx-border-radius: 0px 0px 10px 10px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #68BBE3;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.table-view .cell {
+    -fx-background-color: #FDFBD4;
+    -fx-text-fill: #333333;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center;
 }
