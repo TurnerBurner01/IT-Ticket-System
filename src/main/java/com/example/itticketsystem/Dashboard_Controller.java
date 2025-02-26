@@ -46,12 +46,19 @@ public class Dashboard_Controller {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         statusColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<Ticket, Boolean>() {
             // Method makes true : false = Active : Solved
-            @Override public void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
+            @Override
+            public void updateItem(Boolean status, boolean empty) {
+                super.updateItem(status, empty);
+                if (empty || status == null) {
                     setText(null);
+                    setStyle(""); // Reset style if the cell is empty
                 } else {
-                    setText(item ? "Active" : "Solved");
+                    setText(status ? "Active" : "Solved"); // Set the status text
+                    if (status) {
+                        setStyle("-fx-background-color: #FA5053; -fx-text-fill: white;");
+                    } else {
+                        setStyle("-fx-background-color: #3CAE63; -fx-text-fill: white;");
+                    }
                 }
             }
         });
