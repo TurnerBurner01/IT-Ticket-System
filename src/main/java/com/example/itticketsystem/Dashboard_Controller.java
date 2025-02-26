@@ -13,10 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Dashboard_Controller {
 
@@ -45,9 +41,8 @@ public class Dashboard_Controller {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         statusColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<Ticket, Boolean>() {
-            // Method makes true : false = Active : Solved
-            @Override
-            public void updateItem(Boolean status, boolean empty) {
+            // Method makes (true : false = Active : Solved) & (Change Style based on state)
+            @Override public void updateItem(Boolean status, boolean empty) {
                 super.updateItem(status, empty);
                 if (empty || status == null) {
                     setText(null);
