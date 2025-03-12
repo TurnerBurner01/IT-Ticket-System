@@ -80,7 +80,7 @@
     <center>
         <TableView fx:id="ticketTable">
             <columns>
-                <TableColumn fx:id="checkboxColumn" prefWidth="50">
+                <TableColumn text="BIN" fx:id="checkboxColumn" prefWidth="50">
                     <cellValueFactory>
                         <PropertyValueFactory property="selected"/>
                     </cellValueFactory>
