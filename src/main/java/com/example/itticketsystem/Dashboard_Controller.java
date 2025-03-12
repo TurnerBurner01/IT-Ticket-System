@@ -162,6 +162,9 @@ public class Dashboard_Controller {
             }
         }
 
+        // Update the Priority
+        ticketService.updatePriorities();
+
         // Refresh the table
         refreshTable();
     }
