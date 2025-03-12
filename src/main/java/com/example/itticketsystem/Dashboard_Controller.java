@@ -154,20 +154,37 @@ public class Dashboard_Controller {
         ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
     }
 
+    // Method to delete selected tickets
     @FXML private void deleteSelectedTickets() {
-        // Loop through the tickets and remove the selected ones
+        // Array to store tickets to delete
+        Ticket[] ticketsToDelete = new Ticket[ticketTable.getItems().size()];
+        int deleteCount = 0;
+
+        // Loop through the tickets and add selected ones to the deletion array
         for (Ticket ticket : ticketTable.getItems()) {
             if (ticket.isSelected()) {
-                ticketService.delete(ticket); // Delete ticket from BinarySearchTree
+                ticketsToDelete[deleteCount] = ticket; // Add ticket to deletion array
+                deleteCount++;
             }
         }
 
-        // Update the Priority
-        ticketService.updatePriorities();
+        // Remove the selected tickets from the BST
+        for (int i = 0; i < deleteCount; i++) {
+            ticketService.delete(ticketsToDelete[i]); // Delete each selected ticket from BinarySearchTree
+        }
 
-        // Refresh the table
+        // Update priorities after deletion
+        ticketService.updatePriorities(); // Recalculate priorities after deletion
+
+        // Refresh the table to reflect the changes
         refreshTable();
+
+        // Clear the selected state of the checkboxes
+        for (Ticket ticket : ticketTable.getItems()) {
+            ticket.setSelected(false); // Reset selected state of all tickets
+        }
     }
+
 
     // Method is used to reset / repopulate the table to its original state
     @FXML private void refreshTable() {
