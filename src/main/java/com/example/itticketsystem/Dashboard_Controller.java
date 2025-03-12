@@ -2,26 +2,23 @@ package com.example.itticketsystem;
 
 import com.example.itticketsystem.model.Ticket;
 import com.example.itticketsystem.data_structure.BinarySearchTree;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Dashboard_Controller {
 
     // Initialise Table Columns
     @FXML private TableView<Ticket> ticketTable;
+    @FXML private TableColumn<Ticket, Boolean> checkboxColumn;
     @FXML private TableColumn<Ticket, String> priorityColumn;
     @FXML private TableColumn<Ticket, String> idColumn;
     @FXML private TableColumn<Ticket, Boolean> statusColumn;
@@ -41,17 +38,54 @@ public class Dashboard_Controller {
         ticketService = new BinarySearchTree();
 
         // Set up table columns
-        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        statusColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<Ticket, Boolean>() {
-            // Method makes true : false = Active : Solved
+        checkboxColumn.setCellValueFactory(cellData -> {
+            Ticket ticket = cellData.getValue();
+            return new SimpleObjectProperty<>(ticket.isSelected());  // Use the selected property for the checkbox column
+        });
+        // Set up the CheckBoxTableCell for the checkboxColumn
+        checkboxColumn.setCellFactory(column -> new CheckBoxTableCell<>() {
             @Override public void updateItem(Boolean item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
+                    setGraphic(null);
                 } else {
-                    setText(item ? "Active" : "Solved");
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.setSelected(item);
+                    checkBox.setOnAction(event -> {
+                        Ticket ticket = getTableView().getItems().get(getIndex());
+                        ticket.setSelected(checkBox.isSelected());  // Update the selected state of the ticket
+                    });
+                    setGraphic(checkBox);  // Set the CheckBox as the graphic for this cell
+                }
+            }
+        });
+        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusColumn.setCellFactory(column -> new TableCell<Ticket, Boolean>() {
+            @Override protected void updateItem(Boolean status, boolean empty) {
+                super.updateItem(status, empty);
+                if (empty || status == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(status ? "Active" : "Solved");
+                    setStyle(status ?
+                            "-fx-background-color: #FA5053; -fx-text-fill: white;" : "-fx-background-color: #3CAE63; -fx-text-fill: white;");
+
+                    // Tooltip for hover text
+                    Tooltip tooltip = new Tooltip("Click To Change Status");
+                    Tooltip.install(this, tooltip);
+
+                    // Enable click functionality
+                    setOnMouseClicked(event -> {
+                        Ticket ticket = getTableView().getItems().get(getIndex());
+                        boolean newStatus = !ticket.getStatus(); // Toggle status
+                        ticket.setStatus(newStatus); // Update status in ticket object
+                        setText(newStatus ? "Active" : "Solved"); // Reflect change in cell text
+                        setStyle(newStatus ? "-fx-background-color: #FA5053; -fx-text-fill: white;" : "-fx-background-color: #3CAE63; -fx-text-fill: white;");
+                    });
                 }
             }
         });
@@ -103,6 +137,8 @@ public class Dashboard_Controller {
             Stage stage = new Stage();
             stage.setTitle("Add New Ticket");
             stage.setScene(new Scene(root));
+            stage.setWidth(350);
+            stage.setHeight(310);
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
@@ -117,6 +153,38 @@ public class Dashboard_Controller {
         ticketTable.getItems().clear();                                 // Clear the TableView before reloading
         ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
     }
+
+    // Method to delete selected tickets
+    @FXML private void deleteSelectedTickets() {
+        // Array to store tickets to delete
+        Ticket[] ticketsToDelete = new Ticket[ticketTable.getItems().size()];
+        int deleteCount = 0;
+
+        // Loop through the tickets and add selected ones to the deletion array
+        for (Ticket ticket : ticketTable.getItems()) {
+            if (ticket.isSelected()) {
+                ticketsToDelete[deleteCount] = ticket; // Add ticket to deletion array
+                deleteCount++;
+            }
+        }
+
+        // Remove the selected tickets from the BST
+        for (int i = 0; i < deleteCount; i++) {
+            ticketService.delete(ticketsToDelete[i]); // Delete each selected ticket from BinarySearchTree
+        }
+
+        // Update priorities after deletion
+        ticketService.updatePriorities(); // Recalculate priorities after deletion
+
+        // Refresh the table to reflect the changes
+        refreshTable();
+
+        // Clear the selected state of the checkboxes
+        for (Ticket ticket : ticketTable.getItems()) {
+            ticket.setSelected(false); // Reset selected state of all tickets
+        }
+    }
+
 
     // Method is used to reset / repopulate the table to its original state
     @FXML private void refreshTable() {

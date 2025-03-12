@@ -1,80 +1,186 @@
 /* Global Styles */
 .root {
-    -fx-font-family: "Arial";       /* Setting font for all elements */
-    -fx-background-color: #ecf0f1;  /* Light background color */
-    -fx-padding: 20px;
+    -fx-font-family: "Arial";
+    -fx-background-color: #B1D4E0;
+    -fx-hgrow: ALWAYS;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-/*Form Style*/
+/* Form Style */
 
-/* Title Label Style */
 .titleLabel {
-    -fx-font-size: 24px;
+    -fx-text-fill: #145DA0;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
-    -fx-padding: 10px 0;
+    -fx-font-size: 25px;
 }
 
-/* Form Labels */
 .formLabel {
-    -fx-font-size: 14px;
-    -fx-font-weight: normal;
-    -fx-text-fill: #34495e;
-    -fx-padding: 5px 0;
-}
-
-/* Form Text Field Style */
-.formTextField {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-    -fx-font-size: 14px;
-    -fx-pref-width: 250px;
-}
-
-/* ComboBox Style */
-.formComboBox {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-    -fx-font-size: 14px;
-    -fx-pref-width: 250px;
-}
-
-/* "Submit" & "Cancel" Button Styles */
-.submit_cancelButtons {
-    -fx-background-color: #3498db;
-    -fx-text-fill: white;
+    -fx-text-fill: #145DA0;
+    -fx-font-weight: bold;
     -fx-font-size: 15px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-min-width: 80px;
-    -fx-min-height: 40px;
 }
 
-.submit_cancelButtons:hover {
-    -fx-background-color: #214667;
+.formTextField {
+    -fx-max-width: 150px;
+    -fx-padding: 5px;
 }
+
+.formComboBox {
+    -fx-min-width: 145px;
+    -fx-padding: 5px;
+}
+
+.submit_cancelButtons {
+    -fx-background-color: black;
+}
+
 
 /* Add spacing between elements */
 .children {
     -fx-spacing: 30px;
 }
+
 /*--------------------------------------------------------------------------------------------*/
-/* Menu Button Above The Table*/
+/* Menu Above The Table */
+.MenuHBox {
+    -fx-background-color: #266a9f;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 60px;
+    -fx-padding: 15px;
+    -fx-spacing: 20px;
+    -fx-hgrow: ALWAYS;
+}
+
+/* ComboBox Styling */
 .menuComboBox {
     -fx-background-color: #ffffff;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
+    -fx-border-color: #BDC3C7;
+    -fx-padding: 10px;
     -fx-font-size: 14px;
+    -fx-pref-width: 180px;
+    -fx-effect: innershadow( gaussian, rgba(0, 0, 0, 0.1), 5, 0.0, 2, 2 );
+}
+
+/* Icon Styling */
+.menuIcons {
+    -fx-fit-width: 16px;
+    -fx-fit-height: 16px;
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.2), 4, 0.0, 0, 1 );
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 50%;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.2), 5, 0.0, 0, 1 );
+}
+
+.button:hover {
+    -fx-background-color: #B0B0B0;
+}
+
+.button:pressed {
+    -fx-background-color: #A0A0A0;
+}
+
+/* Styling for the Top Section */
+.top {
+    -fx-background-color: #266a9f;
+    -fx-padding: 10px 20px;
+    -fx-hgrow: ALWAYS;
+}
+
+/* Spacing and layout within the top area */
+.top .HBox {
+    -fx-spacing: 20px;
+    -fx-alignment: center-right;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+/* Side Bar Menu The Table */
+.sideMenuVBox {
+    -fx-background-color: #266a9f;
+    -fx-padding: 5px;
+}
+
+
+/*--------------------------------------------------------------------------------------------*/
+/* Table Styling */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
+    -fx-hgrow: ALWAYS;  /* Allow the TableView to grow */
+    -fx-vgrow: ALWAYS;
+    -fx-pref-width: 700px;  /* Adjust this width to fit all columns */
+    -fx-border-radius: 0px 0px 10px 10px;
+}
+
+.table-view .table-column {
+    -fx-hgrow: ALWAYS;  /* Allow columns to adjust based on content */
+}
+
+.table-view .column-header {
+    -fx-background-color: #68BBE3;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-alignment: center;
+    -fx-padding: 5px 10px;
+    -fx-wrap-text: true;
+    -fx-max-width: 200px;
+}
+
+.table-view .cell {
+    -fx-background-color: #FDFBD4;
+    -fx-text-fill: #333333;
+    -fx-border-color: #D9D7B6;
+    -fx-border-width: 0 1px 1px 0;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+.table-view .column-header .text {
+    -fx-alignment: center;
+    -fx-text-overrun: ellipsis;
+    -fx-wrap-text: true;
+    -fx-max-width: 200px;
+}
+
+/* Column-specific adjustments */
+.table-view .table-column#dateColumn {
+    -fx-pref-width: 115px;
+}
+
+.table-view .table-column#checkboxColumn {
+    -fx-pref-width: 50px;
+}
+
+.table-view .table-column#priorityColumn {
+    -fx-pref-width: 70px;
+}
+
+.table-view .table-column#idColumn {
+    -fx-pref-width: 35px;
+}
+
+.table-view .table-column#statusColumn {
+    -fx-pref-width: 60px;
+}
+
+.table-view .table-column#typeColumn {
+    -fx-pref-width: 130px;
+}
+
+.table-view .table-column#descriptionColumn {
     -fx-pref-width: 150px;
 }
 
-.menuIcons {
-    -fx-fit-width: 30px;
-    -fx-fit-height: 30px;
+.table-view .table-column#nameColumn {
+    -fx-pref-width: 122px;
 }
+
+
