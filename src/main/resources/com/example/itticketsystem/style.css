@@ -126,10 +126,10 @@
     -fx-background-color: #68BBE3;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
-    -fx-alignment: center;  /* Ensures header text is centered */
-    -fx-padding: 5px 10px;  /* Adds padding to header to prevent text overflow */
-    -fx-wrap-text: true;  /* Allow text to wrap */
-    -fx-max-width: 200px;  /* Prevent headers from becoming too wide */
+    -fx-alignment: center;
+    -fx-padding: 5px 10px;
+    -fx-wrap-text: true;
+    -fx-max-width: 200px;
 }
 
 .table-view .cell {
@@ -144,15 +144,15 @@
 }
 
 .table-view .column-header .text {
-    -fx-alignment: center;  /* Ensures header text is centered */
-    -fx-text-overrun: ellipsis;  /* Prevents text overflow */
-    -fx-wrap-text: true;  /* Allows wrapping for longer header text */
-    -fx-max-width: 200px;  /* Set a maximum width for header text */
+    -fx-alignment: center;
+    -fx-text-overrun: ellipsis;
+    -fx-wrap-text: true;
+    -fx-max-width: 200px;
 }
 
 /* Column-specific adjustments */
 .table-view .table-column#dateColumn {
-    -fx-pref-width: 115px;  /* Increase the width for Date column */
+    -fx-pref-width: 115px;
 }
 
 .table-view .table-column#checkboxColumn {
