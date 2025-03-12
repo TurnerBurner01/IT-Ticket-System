@@ -112,4 +112,57 @@ public class BinarySearchTree {
         }
     }
 
+    // Method to delete a ticket from the BST
+    public void delete(Ticket ticketToDelete) {
+        root = deleteRec(root, ticketToDelete);
+    }
+
+    // Recursive delete method
+    private Node deleteRec(Node root, Ticket ticketToDelete) {
+        // If the tree is empty, return null
+        if (root == null) {
+            return root;
+        }
+
+        // Otherwise, recur down the tree
+        if (ticketToDelete.getId() < root.ticket.getId()) {
+            root.left = deleteRec(root.left, ticketToDelete); // Search in left subtree
+        } else if (ticketToDelete.getId() > root.ticket.getId()) {
+            root.right = deleteRec(root.right, ticketToDelete); // Search in right subtree
+        } else {
+            // Node with the ticket is found, now delete it
+
+            // Case 1: Node has no children (leaf node)
+            if (root.left == null && root.right == null) {
+                return null;
+            }
+
+            // Case 2: Node has one child
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+
+            // Case 3: Node has two children
+            // Get the in-order successor (smallest node in the right subtree)
+            root.ticket = minValue(root.right);
+
+            // Delete the in-order successor
+            root.right = deleteRec(root.right, root.ticket);
+        }
+
+        return root;
+    }
+
+    // Get the ticket with the minimum value (used for finding in-order successor)
+    private Ticket minValue(Node root) {
+        Ticket minValue = root.ticket;
+        while (root.left != null) {
+            minValue = root.left.ticket;
+            root = root.left;
+        }
+        return minValue;
+    }
+
 }

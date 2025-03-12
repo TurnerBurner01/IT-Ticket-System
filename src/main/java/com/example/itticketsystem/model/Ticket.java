@@ -3,6 +3,8 @@ package com.example.itticketsystem.model;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class Ticket {
     private int priority;
@@ -14,6 +16,7 @@ public class Ticket {
     private String date;
 
     private static final Random random = new Random();
+    private BooleanProperty selected;  // Changed this to BooleanProperty
 
     // Constructor to create a ticket
     public Ticket(int priority, int id, Boolean status, String type, String description, String name, String date) {
@@ -24,6 +27,7 @@ public class Ticket {
         this.description = description;
         this.name = name;
         this.date = date;
+        this.selected = new SimpleBooleanProperty(false);  // Initialize the selected property
     }
 
     // Create priority for types of issues
@@ -98,5 +102,17 @@ public class Ticket {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean isSelected() {
+        return selected.get();
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected.set(selected);
+    }
+
+    public BooleanProperty selectedProperty() {
+        return selected;
     }
 }

@@ -12,6 +12,8 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.util.Callback?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itticketsystem.Dashboard_Controller" stylesheets="@style.css">
 
     <top>
@@ -30,7 +32,7 @@
                 </graphic>
             </Button>
 
-            <Button fx:id="addDeleteIconButton">
+            <Button fx:id="addDeleteIconButton" onAction="#deleteSelectedTickets">
                 <graphic>
                     <ImageView styleClass="menuIcons" fitWidth="25" fitHeight="25">
                         <image>
@@ -78,6 +80,11 @@
     <center>
         <TableView fx:id="ticketTable">
             <columns>
+                <TableColumn fx:id="checkboxColumn" prefWidth="50">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="selected"/>
+                    </cellValueFactory>
+                </TableColumn>
                 <TableColumn text="Priority" prefWidth="58" fx:id="priorityColumn"/>
                 <TableColumn text="ID" prefWidth="35" fx:id="idColumn"/>
                 <TableColumn text="Status" prefWidth="60" fx:id="statusColumn"/>

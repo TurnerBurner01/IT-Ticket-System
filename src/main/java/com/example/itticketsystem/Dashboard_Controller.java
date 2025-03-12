@@ -2,11 +2,13 @@ package com.example.itticketsystem;
 
 import com.example.itticketsystem.model.Ticket;
 import com.example.itticketsystem.data_structure.BinarySearchTree;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -16,6 +18,7 @@ public class Dashboard_Controller {
 
     // Initialise Table Columns
     @FXML private TableView<Ticket> ticketTable;
+    @FXML private TableColumn<Ticket, Boolean> checkboxColumn;
     @FXML private TableColumn<Ticket, String> priorityColumn;
     @FXML private TableColumn<Ticket, String> idColumn;
     @FXML private TableColumn<Ticket, Boolean> statusColumn;
@@ -35,6 +38,28 @@ public class Dashboard_Controller {
         ticketService = new BinarySearchTree();
 
         // Set up table columns
+        checkboxColumn.setCellValueFactory(cellData -> {
+            Ticket ticket = cellData.getValue();
+            return new SimpleObjectProperty<>(ticket.isSelected());  // Use the selected property for the checkbox column
+        });
+        // Set up the CheckBoxTableCell for the checkboxColumn
+        checkboxColumn.setCellFactory(column -> new CheckBoxTableCell<>() {
+            @Override public void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.setSelected(item);
+                    checkBox.setOnAction(event -> {
+                        Ticket ticket = getTableView().getItems().get(getIndex());
+                        ticket.setSelected(checkBox.isSelected());  // Update the selected state of the ticket
+                    });
+                    setGraphic(checkBox);  // Set the CheckBox as the graphic for this cell
+                }
+            }
+        });
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -127,6 +152,18 @@ public class Dashboard_Controller {
         ticketService.updatePriorities();                               // Update priorities after insertion
         ticketTable.getItems().clear();                                 // Clear the TableView before reloading
         ticketTable.getItems().addAll(ticketService.getAllTickets());   // Add updated tickets to TableView
+    }
+
+    @FXML private void deleteSelectedTickets() {
+        // Loop through the tickets and remove the selected ones
+        for (Ticket ticket : ticketTable.getItems()) {
+            if (ticket.isSelected()) {
+                ticketService.delete(ticket); // Delete ticket from BinarySearchTree
+            }
+        }
+
+        // Refresh the table
+        refreshTable();
     }
 
     // Method is used to reset / repopulate the table to its original state
