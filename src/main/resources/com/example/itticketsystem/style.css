@@ -108,24 +108,28 @@
 
 
 /*--------------------------------------------------------------------------------------------*/
-/* Table Styling  */
+/* Table Styling */
 .table-view {
     -fx-background-color: transparent;
     -fx-border-width: 0px;
-    -fx-hgrow: NEVER;
+    -fx-hgrow: ALWAYS;  /* Allow the TableView to grow */
     -fx-vgrow: ALWAYS;
-    -fx-pref-width: 635px;
+    -fx-pref-width: 700px;  /* Adjust this width to fit all columns */
     -fx-border-radius: 0px 0px 10px 10px;
 }
 
 .table-view .table-column {
-    -fx-hgrow: NEVER;
+    -fx-hgrow: ALWAYS;  /* Allow columns to adjust based on content */
 }
 
 .table-view .column-header {
     -fx-background-color: #68BBE3;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
+    -fx-alignment: center;  /* Ensures header text is centered */
+    -fx-padding: 5px 10px;  /* Adds padding to header to prevent text overflow */
+    -fx-wrap-text: true;  /* Allow text to wrap */
+    -fx-max-width: 200px;  /* Prevent headers from becoming too wide */
 }
 
 .table-view .cell {
@@ -138,3 +142,45 @@
 .table-view .table-cell {
     -fx-alignment: center;
 }
+
+.table-view .column-header .text {
+    -fx-alignment: center;  /* Ensures header text is centered */
+    -fx-text-overrun: ellipsis;  /* Prevents text overflow */
+    -fx-wrap-text: true;  /* Allows wrapping for longer header text */
+    -fx-max-width: 200px;  /* Set a maximum width for header text */
+}
+
+/* Column-specific adjustments */
+.table-view .table-column#dateColumn {
+    -fx-pref-width: 115px;  /* Increase the width for Date column */
+}
+
+.table-view .table-column#checkboxColumn {
+    -fx-pref-width: 50px;
+}
+
+.table-view .table-column#priorityColumn {
+    -fx-pref-width: 70px;
+}
+
+.table-view .table-column#idColumn {
+    -fx-pref-width: 35px;
+}
+
+.table-view .table-column#statusColumn {
+    -fx-pref-width: 60px;
+}
+
+.table-view .table-column#typeColumn {
+    -fx-pref-width: 130px;
+}
+
+.table-view .table-column#descriptionColumn {
+    -fx-pref-width: 150px;
+}
+
+.table-view .table-column#nameColumn {
+    -fx-pref-width: 122px;
+}
+
+
