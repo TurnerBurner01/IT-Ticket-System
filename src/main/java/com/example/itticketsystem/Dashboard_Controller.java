@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -40,20 +38,29 @@ public class Dashboard_Controller {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        statusColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<Ticket, Boolean>() {
-            // Method makes (true : false = Active : Solved) & (Change Style based on state)
-            @Override public void updateItem(Boolean status, boolean empty) {
+        statusColumn.setCellFactory(column -> new TableCell<Ticket, Boolean>() {
+            @Override protected void updateItem(Boolean status, boolean empty) {
                 super.updateItem(status, empty);
                 if (empty || status == null) {
                     setText(null);
-                    setStyle(""); // Reset style if the cell is empty
+                    setStyle("");
                 } else {
-                    setText(status ? "Active" : "Solved"); // Set the status text
-                    if (status) {
-                        setStyle("-fx-background-color: #FA5053; -fx-text-fill: white;");
-                    } else {
-                        setStyle("-fx-background-color: #3CAE63; -fx-text-fill: white;");
-                    }
+                    setText(status ? "Active" : "Solved");
+                    setStyle(status ?
+                            "-fx-background-color: #FA5053; -fx-text-fill: white;" : "-fx-background-color: #3CAE63; -fx-text-fill: white;");
+
+                    // Tooltip for hover text
+                    Tooltip tooltip = new Tooltip("Click To Change Status");
+                    Tooltip.install(this, tooltip);
+
+                    // Enable click functionality
+                    setOnMouseClicked(event -> {
+                        Ticket ticket = getTableView().getItems().get(getIndex());
+                        boolean newStatus = !ticket.getStatus(); // Toggle status
+                        ticket.setStatus(newStatus); // Update status in ticket object
+                        setText(newStatus ? "Active" : "Solved"); // Reflect change in cell text
+                        setStyle(newStatus ? "-fx-background-color: #FA5053; -fx-text-fill: white;" : "-fx-background-color: #3CAE63; -fx-text-fill: white;");
+                    });
                 }
             }
         });
