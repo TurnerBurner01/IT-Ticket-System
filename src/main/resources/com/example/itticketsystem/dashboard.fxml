@@ -85,13 +85,13 @@
                         <PropertyValueFactory property="selected"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Priority" fx:id="priorityColumn"/>
-                <TableColumn text="ID" fx:id="idColumn"/>
-                <TableColumn text="Status"  fx:id="statusColumn"/>
-                <TableColumn text="Type"  fx:id="typeColumn"/>
-                <TableColumn text="Description"  fx:id="descriptionColumn"/>
-                <TableColumn text="Name"  fx:id="nameColumn"/>
-                <TableColumn text="Date" fx:id="dateColumn"/>
+                <TableColumn text="Priority" prefWidth="70" fx:id="priorityColumn"/>
+                <TableColumn text="ID" prefWidth="35" fx:id="idColumn"/>
+                <TableColumn text="Status" prefWidth="60" fx:id="statusColumn"/>
+                <TableColumn text="Type" prefWidth="130" fx:id="typeColumn"/>
+                <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
+                <TableColumn text="Name" prefWidth="122" fx:id="nameColumn"/>
+                <TableColumn text="Date" prefWidth="115" fx:id="dateColumn"/>
             </columns>
         </TableView>
 

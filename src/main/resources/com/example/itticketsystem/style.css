@@ -150,37 +150,4 @@
     -fx-max-width: 200px;
 }
 
-/* Column-specific adjustments */
-.table-view .table-column#dateColumn {
-    -fx-pref-width: 115px;
-}
-
-.table-view .table-column#checkboxColumn {
-    -fx-pref-width: 50px;
-}
-
-.table-view .table-column#priorityColumn {
-    -fx-pref-width: 70px;
-}
-
-.table-view .table-column#idColumn {
-    -fx-pref-width: 35px;
-}
-
-.table-view .table-column#statusColumn {
-    -fx-pref-width: 60px;
-}
-
-.table-view .table-column#typeColumn {
-    -fx-pref-width: 130px;
-}
-
-.table-view .table-column#descriptionColumn {
-    -fx-pref-width: 150px;
-}
-
-.table-view .table-column#nameColumn {
-    -fx-pref-width: 122px;
-}
-
 

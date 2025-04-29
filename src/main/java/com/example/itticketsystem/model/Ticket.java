@@ -3,6 +3,8 @@ package com.example.itticketsystem.model;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import com.example.itticketsystem.data_structure.NewHashMap;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -32,7 +34,7 @@ public class Ticket {
 
     // Create priority for types of issues
     public int getTypePriority() {
-        Map<String, Integer> typePriorityMap = new HashMap<>();
+        NewHashMap typePriorityMap = new NewHashMap();
         typePriorityMap.put("Critical Issue", 1);
         typePriorityMap.put("System Failure", 2);
         typePriorityMap.put("Software Bug", 3);
